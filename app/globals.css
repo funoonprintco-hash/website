@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #ffffff;
+  --color-foreground: #000000;
+
+  --color-ink: #000000;
+  --color-graphite-dark: #1a1a1a;
+  --color-graphite: #333333;
+  --color-graphite-mid: #666666;
+  --color-graphite-light: #e5e5e5;
+  --color-offwhite: #f5f5f5;
+  --color-border: #e5e5e5;
+
+  --color-muted: #f5f5f5;
+  --color-muted-foreground: #666666;
+
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+
+  --radius: 2px;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "kern";
+  }
+
+  ::selection {
+    background-color: #000000;
+    color: #ffffff;
+  }
+
+  /* Visible, refined focus states */
+  :focus-visible {
+    outline: 2px solid var(--color-foreground);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Utility: editorial tracking for uppercase labels */
+.tracking-label {
+  letter-spacing: 0.22em;
+}
+
+/*
+  Instant press feedback on every button / link-button.
+  Apple principle: respond on pointer-down, not pointer-up.
+  Scale + opacity snap on active, spring back on release.
+*/
+button:active,
+a.btn-press:active {
+  opacity: 0.85;
+}
+
+/* Applied to BrandButton via base class — press scales down slightly */
+.brand-btn:active {
+  transform: scale(0.97);
+  transition-duration: 80ms !important;
+}
+
+/*
+  Smooth image rendering for premium print photography.
+*/
+img {
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/*
+  Portfolio card tilt — perspective context lives on the figure wrapper.
+*/
+.tilt-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
