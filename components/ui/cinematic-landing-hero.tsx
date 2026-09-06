@@ -98,6 +98,16 @@ export function CinematicHero({
           >
             {tagline2}
           </h1>
+
+          {/* Scroll indicator */}
+          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 scroll-hint">
+            <span className="text-[11px] uppercase tracking-[0.22em] text-graphite-mid font-sans">Scroll</span>
+            <div className="scroll-arrow">
+              <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 0v20M1 13l7 7 7-7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-graphite-mid"/>
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
     </div>

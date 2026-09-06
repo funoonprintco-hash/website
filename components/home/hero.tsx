@@ -6,7 +6,7 @@ import { site } from "@/lib/site"
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-32 md:pt-40">
+    <section className="relative overflow-hidden pt-12 md:pt-16">
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
         <div className="grid items-end gap-10 lg:grid-cols-12">
           <div className="lg:col-span-7">

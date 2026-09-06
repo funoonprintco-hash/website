@@ -103,6 +103,22 @@ img {
 /* ─── Cinematic Hero ───────────────────────────────────────────────── */
 .gsap-reveal { opacity: 0; }
 
+.scroll-hint {
+  animation: scroll-hint-fade 1s ease 2.5s both;
+}
+@keyframes scroll-hint-fade {
+  from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.scroll-arrow {
+  animation: scroll-arrow-bounce 1.4s ease-in-out infinite;
+}
+@keyframes scroll-arrow-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(5px); }
+}
+
 .film-grain {
   position: absolute; inset: 0; width: 100%; height: 100%;
   pointer-events: none; z-index: 50; opacity: 0.05; mix-blend-mode: overlay;
