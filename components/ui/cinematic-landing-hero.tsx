@@ -71,11 +71,11 @@ export function CinematicHero({
   return (
     <div
       ref={scrollWrapRef}
-      style={{ height: "150vh" }}
+      style={{ height: "150svh" }}
       className={cn("relative", className)}
       {...props}
     >
-      <div className="sticky top-0 z-20 w-screen h-screen overflow-hidden flex items-center justify-center bg-background text-foreground font-sans antialiased">
+      <div className="sticky top-0 z-20 w-screen h-svh overflow-hidden flex items-center justify-center bg-background text-foreground font-sans antialiased">
         <div className="film-grain" aria-hidden="true" />
         <div
           ref={bgGridRef}
