@@ -99,3 +99,72 @@ img {
   transform-style: preserve-3d;
   perspective: 1000px;
 }
+
+/* ─── Cinematic Hero ───────────────────────────────────────────────── */
+.gsap-reveal { opacity: 0; }
+
+.film-grain {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 50; opacity: 0.05; mix-blend-mode: overlay;
+  background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%25" height="100%25" filter="url(%23noiseFilter)"/></svg>');
+}
+
+.bg-grid-theme {
+  background-size: 60px 60px;
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--color-foreground) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-foreground) 5%, transparent) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+}
+
+.text-3d-matte {
+  color: var(--color-foreground);
+  text-shadow:
+    0 10px 30px color-mix(in srgb, var(--color-foreground) 20%, transparent),
+    0 2px 4px color-mix(in srgb, var(--color-foreground) 10%, transparent);
+}
+
+.text-silver-matte {
+  background: linear-gradient(180deg, var(--color-foreground) 0%, color-mix(in srgb, var(--color-foreground) 40%, transparent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transform: translateZ(0);
+  filter:
+    drop-shadow(0px 10px 20px color-mix(in srgb, var(--color-foreground) 15%, transparent))
+    drop-shadow(0px 2px 4px color-mix(in srgb, var(--color-foreground) 10%, transparent));
+}
+
+.site-card {
+  background: var(--color-background, #ffffff);
+  box-shadow:
+    0 40px 100px -20px rgba(0, 0, 0, 0.35),
+    0 20px 40px -20px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.btn-modern-light, .btn-modern-dark {
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.btn-modern-light {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 100%);
+  color: #0F172A;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.1), 0 12px 24px -4px rgba(0,0,0,0.3), inset 0 1px 1px #fff, inset 0 -3px 6px rgba(0,0,0,0.06);
+}
+.btn-modern-light:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.05), 0 6px 12px -2px rgba(0,0,0,0.15), 0 20px 32px -6px rgba(0,0,0,0.4), inset 0 1px 1px #fff, inset 0 -3px 6px rgba(0,0,0,0.06);
+}
+.btn-modern-light:active { transform: translateY(1px); }
+.btn-modern-dark {
+  background: linear-gradient(180deg, #27272A 0%, #18181B 100%);
+  color: #FFFFFF;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 2px 4px rgba(0,0,0,0.6), 0 12px 24px -4px rgba(0,0,0,0.9), inset 0 1px 1px rgba(255,255,255,0.15), inset 0 -3px 6px rgba(0,0,0,0.8);
+}
+.btn-modern-dark:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(180deg, #3F3F46 0%, #27272A 100%);
+}
+.btn-modern-dark:active { transform: translateY(1px); background: #18181B; }

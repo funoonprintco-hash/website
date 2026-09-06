@@ -76,7 +76,7 @@ export function HeroImage() {
       >
         <Image
           src="/work/hero-business-cards.png"
-          alt="Close-up of a stack of premium matte black business cards showing layered paper edges"
+          alt="Funoon Print Co. business cards — black front with logo and white back with contact details on a stone surface"
           fill
           priority
           sizes="(max-width: 1024px) 100vw, 40vw"

@@ -1,3 +1,5 @@
+import { CinematicHero } from "@/components/ui/cinematic-landing-hero"
+import { PageCard } from "@/components/ui/page-card"
 import { Hero } from "@/components/home/hero"
 import { BrandStatement } from "@/components/home/brand-statement"
 import { WhatWeDo } from "@/components/home/what-we-do"
@@ -11,15 +13,18 @@ import { EnquiryCta } from "@/components/home/enquiry-cta"
 export default function HomePage() {
   return (
     <>
-      <Hero />
-      <BrandStatement />
-      <WhatWeDo />
-      <QualityBand />
-      <FeaturedWork />
-      <WhyFunoon />
-      <ProcessSteps />
-      <IndustriesSection />
-      <EnquiryCta />
+      <CinematicHero tagline1="Print that speaks" tagline2="for itself." />
+      <PageCard>
+        <Hero />
+        <BrandStatement />
+        <WhatWeDo />
+        <QualityBand />
+        <FeaturedWork />
+        <WhyFunoon />
+        <ProcessSteps />
+        <IndustriesSection />
+        <EnquiryCta />
+      </PageCard>
     </>
   )
 }
