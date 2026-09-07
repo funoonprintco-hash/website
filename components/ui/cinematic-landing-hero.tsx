@@ -72,7 +72,7 @@ export function CinematicHero({
     <div
       ref={scrollWrapRef}
       style={{ height: "150svh" }}
-      className={cn("relative", className)}
+      className={cn("relative bg-background", className)}
       {...props}
     >
       <div className="sticky top-0 z-20 w-screen h-svh overflow-hidden flex items-center justify-center bg-background text-foreground font-sans antialiased">
