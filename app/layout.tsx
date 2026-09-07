@@ -4,7 +4,6 @@ import { DM_Sans, Archivo } from "next/font/google"
 import { site } from "@/lib/site"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-import { LoadingWrapper } from "@/components/loading-wrapper"
 import "./globals.css"
 
 const dmSans = DM_Sans({
@@ -95,7 +94,6 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <LoadingWrapper />
         <SiteHeader />
         <main id="main-content">{children}</main>
         <SiteFooter />
