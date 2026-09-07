@@ -58,32 +58,31 @@ export function CinematicHero({
 
     const scrollST = scrollTl.scrollTrigger;
 
-    // Intro animation — starts after loading screen finishes
+    // Intro animation — waits for loading screen event, or falls back quickly
+    // if no loading screen is active (SPA navigation, non-home pages).
     let introTl: gsap.core.Timeline | null = null;
+    let started = false;
 
     function runIntro() {
+      if (started) return;
+      started = true;
+      clearTimeout(fallback);
       introTl = gsap.timeline({ delay: 0.2 });
       introTl
         .to(textTrack, { duration: 1.8, opacity: 1, y: 0, scale: 1, filter: "blur(0px)", rotationX: 0, ease: "expo.out" })
         .to(textDays, { duration: 1.4, opacity: 1, y: 0, ease: "power4.inOut" }, "-=1.0");
     }
 
-    // If loading screen already ran this session, start immediately; otherwise wait
-    const alreadyLoaded = (() => {
-      try { return !!sessionStorage.getItem("funoon_loaded") } catch { return true }
-    })()
-
-    if (alreadyLoaded) {
-      runIntro()
-    } else {
-      window.addEventListener("funoon:loaded", runIntro, { once: true })
-    }
+    window.addEventListener("funoon:loaded", runIntro, { once: true });
+    // Fallback: if no loading screen fires within 600ms, start immediately
+    const fallback = setTimeout(runIntro, 600);
 
     return () => {
+      clearTimeout(fallback);
+      window.removeEventListener("funoon:loaded", runIntro);
       introTl?.kill();
       scrollTl.kill();
       scrollST?.kill();
-      window.removeEventListener("funoon:loaded", runIntro);
     };
   }, []);
 
