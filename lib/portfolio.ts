@@ -26,7 +26,7 @@ export const workItems: WorkItem[] = [
     slug: "business-cards",
     title: "Business Cards",
     category: "Business Cards",
-    image: "/work/maxline-business-cards.jpeg",
+    image: "/work/Maxline-Business-card.png",
     imageAlt: "Maxline Global Logistic Solutions business cards showing front and back design",
     client: "Maxline",
     size: "wide",
