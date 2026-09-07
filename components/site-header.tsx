@@ -43,8 +43,8 @@ export function SiteHeader() {
           className={cn(
             "pointer-events-auto flex items-center justify-between w-full max-w-4xl rounded-full border px-4 py-2 transition-all duration-500",
             scrolled
-              ? "bg-background/95 backdrop-blur-md border-border shadow-[0_8px_32px_-8px_rgba(0,0,0,0.18)]"
-              : "bg-background/80 backdrop-blur-sm border-border/60 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.10)]",
+              ? "bg-white/50 backdrop-blur-2xl border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.8)]"
+              : "bg-white/30 backdrop-blur-xl border-white/25 shadow-[0_4px_24px_rgba(0,0,0,0.07),inset_0_1px_0_rgba(255,255,255,0.6)]",
           )}
         >
           {/* Logo */}
