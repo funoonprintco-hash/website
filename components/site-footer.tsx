@@ -8,7 +8,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-[1400px] px-5 py-16 md:px-10">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
-            <Logo variant="light" className="h-12 w-auto" />
+            <Logo variant="light" className="h-20 w-auto" />
             <p className="mt-6 max-w-xs font-sans text-sm leading-relaxed text-background/60">
               {site.positioning}
             </p>
