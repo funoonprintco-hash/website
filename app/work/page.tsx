@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { BrandButton } from "@/components/brand-button"
 import { Eyebrow } from "@/components/section-heading"
 import { Reveal } from "@/components/reveal"
-import { SixBars } from "@/components/six-bars"
+import { WorkGallery } from "@/components/work-gallery"
 
 export const metadata: Metadata = {
   title: "Work",
@@ -42,25 +42,9 @@ export default function WorkPage() {
         </div>
       </section>
 
-      {/* Portfolio coming soon */}
-      <section className="mx-auto max-w-[1400px] px-5 py-32 md:px-10 md:py-40">
-        <Reveal>
-          <div className="flex flex-col items-center justify-center text-center">
-            <SixBars className="mb-10 h-8 text-graphite-mid/30" />
-            <h2 className="font-display text-3xl font-semibold tracking-[-0.02em] md:text-5xl">
-              Portfolio in progress.
-            </h2>
-            <p className="mt-6 max-w-md font-sans text-base leading-relaxed text-graphite-mid">
-              We're photographing finished projects to share here. Get in touch and we'll walk you
-              through our recent work directly.
-            </p>
-            <div className="mt-10">
-              <BrandButton href="/contact" variant="primary">
-                Get in Touch
-              </BrandButton>
-            </div>
-          </div>
-        </Reveal>
+      {/* Portfolio grid */}
+      <section className="mx-auto max-w-[1400px] px-5 py-20 md:px-10 md:py-28">
+        <WorkGallery />
       </section>
 
       {/* CTA */}
