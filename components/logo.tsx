@@ -12,14 +12,25 @@ export function Logo({
   className?: string
   priority?: boolean
 }) {
-  const src = variant === "light" ? "/brand/funoon-logo-light.png" : "/brand/funoon-logo-dark.png"
+  if (variant === "light") {
+    return (
+      <Image
+        src="/brand/funoon-logo-light.png"
+        alt="Funoon Print Co."
+        width={533}
+        height={391}
+        priority={priority}
+        className={cn("h-auto w-auto object-contain", className)}
+      />
+    )
+  }
+
+  // Dark variant — use SVG for pixel-perfect crispness at any size
   return (
-    <Image
-      src={src || "/placeholder.svg"}
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/brand/funoon-logo-dark.svg"
       alt="Funoon Print Co."
-      width={533}
-      height={391}
-      priority={priority}
       className={cn("h-auto w-auto object-contain", className)}
     />
   )
