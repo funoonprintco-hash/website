@@ -13,7 +13,7 @@ import { EnquiryCta } from "@/components/home/enquiry-cta"
 export default function HomePage() {
   return (
     <>
-      <CinematicHero tagline1="Print that speaks" tagline2="for itself." />
+      <CinematicHero tagline1="Your brand deserves" tagline2="better than ordinary." />
       <PageCard>
         <Hero />
         <BrandStatement />
