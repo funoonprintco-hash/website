@@ -71,7 +71,7 @@ export const workItems: WorkItem[] = [
     slug: "exhibition-banner",
     title: "Roll-Up Banner",
     category: "Large Format",
-    image: "/work/maxline-banner.png",
+    image: "/work/maxline-banner.jpeg",
     imageAlt: "Maxline Global Logistic Solutions pull-up banner with blue chevron design in a corporate lobby",
     client: "Maxline",
     size: "tall",
