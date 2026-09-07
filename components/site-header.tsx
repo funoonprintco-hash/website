@@ -54,14 +54,14 @@ export function SiteHeader() {
             className="flex items-center shrink-0"
           >
             <motion.div
-              animate={{ height: scrolled ? 44 : 36 }}
+              animate={{ height: scrolled ? 56 : 44 }}
               transition={{ type: "spring", stiffness: 320, damping: 28 }}
               style={{ overflow: "hidden" }}
             >
               <Logo
                 variant="dark"
                 priority
-                className={cn("w-auto transition-all duration-500", scrolled ? "h-11" : "h-9")}
+                className={cn("w-auto transition-all duration-500", scrolled ? "h-14" : "h-11")}
               />
             </motion.div>
           </Link>
