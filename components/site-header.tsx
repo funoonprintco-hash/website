@@ -53,7 +53,7 @@ export function SiteHeader() {
             aria-label="Funoon Print Co. home"
             className={cn("flex items-center transition-all duration-500", scrolled ? "py-3" : "py-5")}
           >
-            <Logo variant="dark" priority className={cn("w-auto transition-all duration-500", scrolled ? "h-9" : "h-11")} />
+            <Logo variant="dark" priority className={cn("w-auto transition-all duration-500", scrolled ? "h-12" : "h-16")} />
           </Link>
 
           <nav className="hidden items-center gap-10 lg:flex" aria-label="Primary">
