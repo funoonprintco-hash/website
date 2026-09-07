@@ -69,11 +69,11 @@ export const workItems: WorkItem[] = [
   },
   {
     slug: "exhibition-banner",
-    title: "Exhibition Banner",
+    title: "Roll-Up Banner",
     category: "Large Format",
-    image: "/work/large-format.png",
-    imageAlt: "Roll-up banner standing in a minimal concrete architectural interior",
-    client: "Example Project",
+    image: "/work/maxline-banner.png",
+    imageAlt: "Maxline Global Logistic Solutions pull-up banner with blue chevron design in a corporate lobby",
+    client: "Maxline",
     size: "tall",
   },
   {
