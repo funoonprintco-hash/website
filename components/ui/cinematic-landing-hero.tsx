@@ -36,14 +36,11 @@ export function CinematicHero({
 
     if (!textTrack || !textDays || !textWrapper || !bgGrid || !scrollWrap) return;
 
+    // Keep text hidden until intro runs
     gsap.set(textTrack, { opacity: 0, y: 60, scale: 0.85, filter: "blur(20px)", rotationX: -20 });
     gsap.set(textDays, { opacity: 0, y: 20 });
 
-    const introTl = gsap.timeline({ delay: 0.4 });
-    introTl
-      .to(textTrack, { duration: 1.8, opacity: 1, y: 0, scale: 1, filter: "blur(0px)", rotationX: 0, ease: "expo.out" })
-      .to(textDays, { duration: 1.4, opacity: 1, y: 0, ease: "power4.inOut" }, "-=1.0");
-
+    // Scroll-driven fade (setup now — it only activates on scroll)
     const scrollTl = gsap.timeline({
       scrollTrigger: {
         trigger: scrollWrap,
@@ -61,10 +58,32 @@ export function CinematicHero({
 
     const scrollST = scrollTl.scrollTrigger;
 
+    // Intro animation — starts after loading screen finishes
+    let introTl: gsap.core.Timeline | null = null;
+
+    function runIntro() {
+      introTl = gsap.timeline({ delay: 0.2 });
+      introTl
+        .to(textTrack, { duration: 1.8, opacity: 1, y: 0, scale: 1, filter: "blur(0px)", rotationX: 0, ease: "expo.out" })
+        .to(textDays, { duration: 1.4, opacity: 1, y: 0, ease: "power4.inOut" }, "-=1.0");
+    }
+
+    // If loading screen already ran this session, start immediately; otherwise wait
+    const alreadyLoaded = (() => {
+      try { return !!sessionStorage.getItem("funoon_loaded") } catch { return true }
+    })()
+
+    if (alreadyLoaded) {
+      runIntro()
+    } else {
+      window.addEventListener("funoon:loaded", runIntro, { once: true })
+    }
+
     return () => {
-      introTl.kill();
+      introTl?.kill();
       scrollTl.kill();
       scrollST?.kill();
+      window.removeEventListener("funoon:loaded", runIntro);
     };
   }, []);
 

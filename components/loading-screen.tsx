@@ -171,7 +171,10 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       () => { if (screenRef.current) screenRef.current.style.pointerEvents = "none" },
       reduced ? 440 : 2800,
     )
-    const tdone = setTimeout(onComplete, reduced ? 900 : 3500)
+    const tdone = setTimeout(() => {
+      window.dispatchEvent(new CustomEvent("funoon:loaded"))
+      onComplete()
+    }, reduced ? 900 : 3500)
 
     return () => { clearTimeout(tpe); clearTimeout(tdone) }
   }, [onComplete])
