@@ -66,13 +66,18 @@ export function PortfolioCard({
         />
         <div className="absolute inset-0 bg-ink/0 transition-colors duration-500 group-hover:bg-ink/5" />
       </div>
-      <figcaption className="mt-4 flex items-baseline justify-between gap-4">
-        <span className="font-display text-lg font-medium tracking-[-0.01em] text-ink">
-          {item.title}
-        </span>
-        <span className="font-sans text-[11px] uppercase tracking-label text-graphite-mid">
-          {item.category}
-        </span>
+      <figcaption className="mt-4">
+        <div className="flex items-baseline justify-between gap-4">
+          <span className="font-display text-lg font-medium tracking-[-0.01em] text-ink">
+            {item.title}
+          </span>
+          <span className="font-sans text-[11px] uppercase tracking-label text-graphite-mid">
+            {item.category}
+          </span>
+        </div>
+        {item.note && (
+          <p className="mt-1.5 font-sans text-[11px] text-graphite-mid italic">{item.note}</p>
+        )}
       </figcaption>
     </figure>
   )

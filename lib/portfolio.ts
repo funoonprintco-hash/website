@@ -16,9 +16,9 @@ export type WorkItem = {
   category: WorkCategory
   image: string
   imageAlt: string
-  // Placeholder — no real client names are used.
   client: string
   size?: "wide" | "tall" | "regular"
+  note?: string
 }
 
 export const workItems: WorkItem[] = [
@@ -26,10 +26,11 @@ export const workItems: WorkItem[] = [
     slug: "business-cards",
     title: "Business Cards",
     category: "Business Cards",
-    image: "/work/hero-business-cards.png",
-    imageAlt: "Stack of premium matte black business cards with visible paper edges",
-    client: "",
-    size: "tall",
+    image: "/work/maxline-business-cards.jpeg",
+    imageAlt: "Maxline Global Logistic Solutions business cards showing front and back design",
+    client: "Maxline",
+    size: "wide",
+    note: "Contact details blurred for privacy.",
   },
   {
     slug: "exhibition-banner",
