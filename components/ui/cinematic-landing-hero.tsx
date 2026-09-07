@@ -120,7 +120,7 @@ export function CinematicHero({
         </div>
 
         {/* Scroll indicator — pinned to the bottom of the sticky viewport */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 scroll-hint">
+        <div className="absolute bottom-8 left-0 right-0 mx-auto w-max z-10 flex flex-col items-center gap-2 scroll-hint">
           <span className="text-[11px] uppercase tracking-[0.22em] text-graphite-mid font-sans">Scroll</span>
           <div className="scroll-arrow text-graphite-mid">
             <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
