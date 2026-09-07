@@ -19,7 +19,7 @@ export function SiteHeader() {
   useEffect(() => { setMounted(true) }, [])
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
+    const onScroll = () => setScrolled(window.scrollY > 40)
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
@@ -34,33 +34,41 @@ export function SiteHeader() {
 
   return (
     <>
-      <header
-        className={cn(
-          "fixed inset-x-0 top-0 z-[200] transition-all duration-500",
-          scrolled
-            ? "border-b border-border bg-background/90 backdrop-blur-md"
-            : "border-b border-transparent bg-background/0",
-        )}
-      >
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-5 md:px-10">
+      {/* Floating pill navbar */}
+      <div className="fixed inset-x-0 top-0 z-[200] flex justify-center px-4 py-5 pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: "spring", stiffness: 320, damping: 28, delay: 0.1 }}
+          className={cn(
+            "pointer-events-auto flex items-center justify-between w-full max-w-4xl rounded-full border px-4 py-2 transition-all duration-500",
+            scrolled
+              ? "bg-background/95 backdrop-blur-md border-border shadow-[0_8px_32px_-8px_rgba(0,0,0,0.18)]"
+              : "bg-background/80 backdrop-blur-sm border-border/60 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.10)]",
+          )}
+        >
+          {/* Logo */}
           <Link
             href="/"
             aria-label="Funoon Print Co. home"
-            className={cn("flex items-center transition-all duration-500", scrolled ? "py-3" : "py-5")}
+            className="flex items-center shrink-0"
           >
-            <Logo
-              variant="dark"
-              priority
-              className={cn("w-auto transition-all duration-500", scrolled ? "h-16" : "h-10")}
-            />
+            <motion.div
+              animate={{ height: scrolled ? 44 : 36 }}
+              transition={{ type: "spring", stiffness: 320, damping: 28 }}
+              style={{ overflow: "hidden" }}
+            >
+              <Logo
+                variant="dark"
+                priority
+                className={cn("w-auto transition-all duration-500", scrolled ? "h-11" : "h-9")}
+              />
+            </motion.div>
           </Link>
 
           {/* Desktop nav — spring-animated active pill */}
           <LayoutGroup>
-            <nav
-              className="hidden items-center gap-0.5 lg:flex rounded-full border border-border bg-background px-1.5 py-1.5"
-              aria-label="Primary"
-            >
+            <nav className="hidden lg:flex items-center gap-0.5" aria-label="Primary">
               {nav.map((item) => {
                 const active =
                   pathname === item.href ||
@@ -69,7 +77,7 @@ export function SiteHeader() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="relative px-5 py-2 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ink"
+                    className="relative px-4 py-2 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ink"
                   >
                     {active && (
                       <motion.div
@@ -89,33 +97,39 @@ export function SiteHeader() {
                   </Link>
                 )
               })}
-              <BrandButton href="/quote" variant="primary" className="ml-2 px-6 py-2">
-                Request a Quote
-              </BrandButton>
             </nav>
           </LayoutGroup>
 
-          {/* Hamburger */}
-          <button
-            type="button"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-            className="relative flex h-10 w-10 flex-col items-center justify-center gap-[6px] lg:hidden"
-          >
-            <motion.span
-              animate={open ? { rotate: 45, y: 3.5 } : { rotate: 0, y: 0 }}
-              transition={{ type: "spring", stiffness: 400, damping: 28 }}
-              className="h-px w-6 bg-ink origin-center"
-            />
-            <motion.span
-              animate={open ? { rotate: -45, y: -3.5 } : { rotate: 0, y: 0 }}
-              transition={{ type: "spring", stiffness: 400, damping: 28 }}
-              className="h-px w-6 bg-ink origin-center"
-            />
-          </button>
-        </div>
-      </header>
+          {/* Right side — CTA + hamburger */}
+          <div className="flex items-center gap-3">
+            <div className="hidden lg:block">
+              <BrandButton href="/quote" variant="primary" className="px-5 py-2.5 text-[12px]">
+                Request a Quote
+              </BrandButton>
+            </div>
+
+            {/* Hamburger */}
+            <button
+              type="button"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="lg:hidden relative flex h-9 w-9 flex-col items-center justify-center gap-[5px]"
+            >
+              <motion.span
+                animate={open ? { rotate: 45, y: 3 } : { rotate: 0, y: 0 }}
+                transition={{ type: "spring", stiffness: 400, damping: 28 }}
+                className="h-px w-5 bg-ink origin-center"
+              />
+              <motion.span
+                animate={open ? { rotate: -45, y: -3 } : { rotate: 0, y: 0 }}
+                transition={{ type: "spring", stiffness: 400, damping: 28 }}
+                className="h-px w-5 bg-ink origin-center"
+              />
+            </button>
+          </div>
+        </motion.div>
+      </div>
 
       {/* Mobile menu portal */}
       {mounted && createPortal(
@@ -127,7 +141,6 @@ export function SiteHeader() {
           )}
           style={{ zIndex: 100 }}
         >
-          {/* Nav links — spring stagger */}
           <div className="flex flex-1 flex-col justify-center gap-1 px-8">
             <AnimatePresence>
               {open && nav.map((item, i) => (
@@ -136,12 +149,7 @@ export function SiteHeader() {
                   initial={{ opacity: 0, x: -32 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 340,
-                    damping: 28,
-                    delay: i * 0.07,
-                  }}
+                  transition={{ type: "spring", stiffness: 340, damping: 28, delay: i * 0.07 }}
                 >
                   <Link
                     href={item.href}
@@ -154,7 +162,6 @@ export function SiteHeader() {
             </AnimatePresence>
           </div>
 
-          {/* Footer strip — slides up */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={open ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
