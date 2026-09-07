@@ -9,7 +9,7 @@ const CSS = `
     align-items: center; justify-content: center;
     background: #F4EFE8;
     overflow: hidden;
-    animation: ls-in .22s ease forwards, ls-out .65s ease 2.8s forwards;
+    animation: ls-in .22s ease forwards, ls-out .75s ease 3.6s forwards;
   }
 
   /* Dot grid — suggests design-software workspace */
@@ -64,7 +64,7 @@ const CSS = `
   /* ── Logo reveal ─────────────────────────────── */
   .ls-logo-clip {
     position: relative; overflow: hidden;
-    animation: ls-reveal 1.15s cubic-bezier(.4,0,.15,1) .72s both;
+    animation: ls-reveal 1.45s cubic-bezier(.4,0,.15,1) .85s both;
     clip-path: inset(0 100% 0 0);
   }
   .ls-logo-img {
@@ -86,7 +86,7 @@ const CSS = `
       transparent 100%
     );
     transform: translateX(-130%) skewX(-6deg);
-    animation: ls-spot .7s cubic-bezier(.4,0,.2,1) 1.98s forwards;
+    animation: ls-spot .85s cubic-bezier(.4,0,.2,1) 2.45s forwards;
     pointer-events: none;
   }
 
@@ -94,7 +94,7 @@ const CSS = `
   .ls-tag-wrap {
     display: flex; flex-direction: column; align-items: center; gap: 10px;
     margin-top: 26px; opacity: 0;
-    animation: ls-fup .55s ease 2.22s forwards;
+    animation: ls-fup .65s ease 2.75s forwards;
   }
   .ls-rule {
     width: 30px; height: .5px;
@@ -118,7 +118,7 @@ const CSS = `
       rgba(28,20,12,.06) 80%,
       transparent 100%
     );
-    animation: ls-sweep 1.15s cubic-bezier(.4,0,.15,1) .72s forwards;
+    animation: ls-sweep 1.45s cubic-bezier(.4,0,.15,1) .85s forwards;
     filter: blur(.4px); pointer-events: none;
   }
 
@@ -169,12 +169,12 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
     // Remove pointer-events once the fade-out begins so the page is usable
     const tpe = setTimeout(
       () => { if (screenRef.current) screenRef.current.style.pointerEvents = "none" },
-      reduced ? 440 : 2800,
+      reduced ? 440 : 3600,
     )
     const tdone = setTimeout(() => {
       window.dispatchEvent(new CustomEvent("funoon:loaded"))
       onComplete()
-    }, reduced ? 900 : 3500)
+    }, reduced ? 900 : 4500)
 
     return () => { clearTimeout(tpe); clearTimeout(tdone) }
   }, [onComplete])
