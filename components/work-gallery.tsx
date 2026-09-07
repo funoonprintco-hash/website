@@ -1,47 +1,52 @@
 "use client"
 
 import { useState } from "react"
+import { motion, AnimatePresence } from "motion/react"
 import { workItems, workFilters } from "@/lib/portfolio"
 import type { WorkCategory } from "@/lib/portfolio"
 import { PortfolioCard } from "@/components/portfolio-card"
-import { cn } from "@/lib/utils"
+import { ContinuousTabs } from "@/components/continuous-tabs"
 
 export function WorkGallery() {
   const [active, setActive] = useState<WorkCategory | "All">("All")
 
+  const tabs = workFilters.map((f) => ({ id: f, label: f }))
   const filtered = active === "All" ? workItems : workItems.filter((i) => i.category === active)
 
   return (
     <div>
-      {/* Category filter */}
-      <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {workFilters.map((f) => (
-          <button
-            key={f}
-            type="button"
-            onClick={() => setActive(f)}
-            className={cn(
-              "shrink-0 rounded-full px-4 py-1.5 font-sans text-[12px] uppercase tracking-[0.14em] transition-colors duration-200",
-              active === f
-                ? "bg-ink text-background"
-                : "bg-offwhite text-graphite-mid hover:bg-graphite-light hover:text-ink",
-            )}
-          >
-            {f}
-          </button>
-        ))}
+      {/* Animated filter tabs */}
+      <div className="flex justify-center">
+        <ContinuousTabs
+          tabs={tabs}
+          defaultActiveId="All"
+          onChange={(id) => setActive(id as WorkCategory | "All")}
+        />
       </div>
 
-      {/* Grid */}
+      {/* Animated grid */}
       <div className="mt-12 grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((item, i) => (
-          <PortfolioCard
-            key={item.slug}
-            item={item}
-            priority={i < 3}
-            className={item.size === "wide" ? "sm:col-span-2" : ""}
-          />
-        ))}
+        <AnimatePresence mode="popLayout">
+          {filtered.map((item, i) => (
+            <motion.div
+              key={item.slug}
+              layout
+              initial={{ opacity: 0, scale: 0.94, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.94, y: 8 }}
+              transition={{
+                type: "spring",
+                stiffness: 340,
+                damping: 28,
+                mass: 0.8,
+                delay: i * 0.04,
+              }}
+              className={item.size === "wide" ? "sm:col-span-2" : ""}
+            >
+              <PortfolioCard item={item} priority={i < 3} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </div>
   )
