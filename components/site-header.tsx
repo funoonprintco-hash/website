@@ -4,6 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
+import { motion, LayoutGroup, AnimatePresence } from "motion/react"
 import { Logo } from "@/components/logo"
 import { BrandButton } from "@/components/brand-button"
 import { nav, site } from "@/lib/site"
@@ -15,9 +16,7 @@ export function SiteHeader() {
   const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  useEffect(() => { setMounted(true) }, [])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -26,15 +25,11 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  useEffect(() => {
-    setOpen(false)
-  }, [pathname])
+  useEffect(() => { setOpen(false) }, [pathname])
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : ""
-    return () => {
-      document.body.style.overflow = ""
-    }
+    return () => { document.body.style.overflow = "" }
   }, [open])
 
   return (
@@ -51,32 +46,56 @@ export function SiteHeader() {
           <Link
             href="/"
             aria-label="Funoon Print Co. home"
-            className={cn("flex items-center transition-all duration-500", scrolled ? "py-3" : "py-5")}
+            className={cn("flex items-center transition-all duration-500", scrolled ? "py-3" : "py-4")}
           >
-            <Logo variant="dark" priority className={cn("w-auto transition-all duration-500", scrolled ? "h-12" : "h-16")} />
+            <Logo
+              variant="dark"
+              priority
+              className={cn("w-auto transition-all duration-500", scrolled ? "h-12" : "h-16")}
+            />
           </Link>
 
-          <nav className="hidden items-center gap-10 lg:flex" aria-label="Primary">
-            {nav.map((item) => {
-              const active = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href))
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "font-sans text-[13px] uppercase tracking-[0.14em] transition-colors duration-300",
-                    active ? "text-ink" : "text-graphite-mid hover:text-ink",
-                  )}
-                >
-                  {item.label}
-                </Link>
-              )
-            })}
-            <BrandButton href="/quote" variant="primary" className="px-6 py-3">
-              Request a Quote
-            </BrandButton>
-          </nav>
+          {/* Desktop nav — spring-animated active pill */}
+          <LayoutGroup>
+            <nav
+              className="hidden items-center gap-0.5 lg:flex rounded-full border border-border bg-background px-1.5 py-1.5"
+              aria-label="Primary"
+            >
+              {nav.map((item) => {
+                const active =
+                  pathname === item.href ||
+                  (item.href !== "/" && pathname.startsWith(item.href))
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="relative px-5 py-2 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ink"
+                  >
+                    {active && (
+                      <motion.div
+                        layoutId="nav-active-pill"
+                        className="absolute inset-0 rounded-full bg-ink"
+                        transition={{ type: "spring", stiffness: 380, damping: 30, mass: 0.9 }}
+                      />
+                    )}
+                    <span
+                      className={cn(
+                        "relative z-10 font-sans text-[13px] uppercase tracking-[0.14em] transition-colors duration-200",
+                        active ? "text-background" : "text-graphite-mid hover:text-ink",
+                      )}
+                    >
+                      {item.label}
+                    </span>
+                  </Link>
+                )
+              })}
+              <BrandButton href="/quote" variant="primary" className="ml-2 px-6 py-2">
+                Request a Quote
+              </BrandButton>
+            </nav>
+          </LayoutGroup>
 
+          {/* Hamburger */}
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -84,62 +103,75 @@ export function SiteHeader() {
             onClick={() => setOpen((v) => !v)}
             className="relative flex h-10 w-10 flex-col items-center justify-center gap-[6px] lg:hidden"
           >
-            <span
-              className={cn(
-                "h-px w-6 bg-ink transition-all duration-300",
-                open && "translate-y-[3.5px] rotate-45",
-              )}
+            <motion.span
+              animate={open ? { rotate: 45, y: 3.5 } : { rotate: 0, y: 0 }}
+              transition={{ type: "spring", stiffness: 400, damping: 28 }}
+              className="h-px w-6 bg-ink origin-center"
             />
-            <span
-              className={cn(
-                "h-px w-6 bg-ink transition-all duration-300",
-                open && "-translate-y-[3.5px] -rotate-45",
-              )}
+            <motion.span
+              animate={open ? { rotate: -45, y: -3.5 } : { rotate: 0, y: 0 }}
+              transition={{ type: "spring", stiffness: 400, damping: 28 }}
+              className="h-px w-6 bg-ink origin-center"
             />
           </button>
         </div>
       </header>
 
-      {/* Mobile menu — portal at body level to bypass stacking context issues */}
+      {/* Mobile menu portal */}
       {mounted && createPortal(
         <div
           aria-hidden={!open}
           className={cn(
-            "fixed inset-0 flex flex-col bg-background transition-all duration-500 lg:hidden",
+            "fixed inset-0 flex flex-col bg-background transition-opacity duration-300 lg:hidden",
             open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
           )}
           style={{ zIndex: 100 }}
         >
-          <div className="flex flex-1 flex-col justify-center gap-2 px-6">
-            {nav.map((item, i) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="font-display text-5xl font-semibold tracking-[-0.02em] text-ink transition-transform duration-500"
-                style={{ transitionDelay: open ? `${120 + i * 60}ms` : "0ms" }}
-              >
-                {item.label}
-              </Link>
-            ))}
+          {/* Nav links — spring stagger */}
+          <div className="flex flex-1 flex-col justify-center gap-1 px-8">
+            <AnimatePresence>
+              {open && nav.map((item, i) => (
+                <motion.div
+                  key={item.href}
+                  initial={{ opacity: 0, x: -32 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 340,
+                    damping: 28,
+                    delay: i * 0.07,
+                  }}
+                >
+                  <Link
+                    href={item.href}
+                    className="block font-display text-5xl font-semibold tracking-[-0.02em] text-ink py-1.5"
+                  >
+                    {item.label}
+                  </Link>
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
-          <div className="border-t border-border px-6 py-8">
+
+          {/* Footer strip — slides up */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={open ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+            transition={{ type: "spring", stiffness: 300, damping: 28, delay: 0.28 }}
+            className="border-t border-border px-8 py-8"
+          >
             <BrandButton href="/quote" variant="primary" className="mb-6 w-full">
               Request a Quote
             </BrandButton>
             <div className="flex flex-col gap-3 font-sans text-sm text-graphite">
-              <a href={site.phoneHref} className="hover:text-ink">
-                Call {site.phone}
-              </a>
-              <a href={site.whatsappHref} className="hover:text-ink">
-                WhatsApp
-              </a>
-              <a href={site.emailHref} className="hover:text-ink">
-                {site.email}
-              </a>
+              <a href={site.phoneHref} className="hover:text-ink">Call {site.phone}</a>
+              <a href={site.whatsappHref} className="hover:text-ink">WhatsApp</a>
+              <a href={site.emailHref} className="hover:text-ink">{site.email}</a>
             </div>
-          </div>
+          </motion.div>
         </div>,
-        document.body
+        document.body,
       )}
     </>
   )
