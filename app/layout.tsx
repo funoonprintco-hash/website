@@ -48,8 +48,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/og-image.png",
-        width: 1200,
-        height: 630,
+        width: 1733,
+        height: 908,
         alt: "Funoon Print Co. — Premium Printing & Corporate Branding in UAE",
       },
     ],
