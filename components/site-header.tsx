@@ -35,7 +35,7 @@ export function SiteHeader() {
   return (
     <>
       {/* Floating pill navbar */}
-      <div className="fixed inset-x-0 top-0 z-[200] flex justify-center px-4 py-5 pointer-events-none">
+      <div className="fixed inset-x-0 top-0 z-[9999] flex justify-center px-4 py-5 pointer-events-none">
         <motion.div
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -139,7 +139,7 @@ export function SiteHeader() {
             "fixed inset-0 flex flex-col bg-background transition-opacity duration-300 lg:hidden",
             open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
           )}
-          style={{ zIndex: 100 }}
+          style={{ zIndex: 9998 }}
         >
           <div className="flex flex-1 flex-col justify-center gap-1 px-8">
             <AnimatePresence>
