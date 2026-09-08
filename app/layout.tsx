@@ -45,12 +45,21 @@ export const metadata: Metadata = {
     description:
       "Premium printing and branded materials for businesses that care about every detail. Sharjah, UAE.",
     siteName: "Funoon Print Co.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Funoon Print Co. — Premium Printing & Corporate Branding in UAE",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Funoon Print Co. | Premium Printing & Corporate Branding in UAE",
     description:
       "Premium printing and branded materials for businesses that care about every detail. Sharjah, UAE.",
+    images: ["/og-image.png"],
   },
   robots: { index: true, follow: true },
 }
