@@ -48,9 +48,9 @@ export const metadata: Metadata = {
     siteName: "Funoon Print Co.",
     images: [
       {
-        url: "/og-image-v2.png",
-        width: 1733,
-        height: 908,
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
         alt: "Funoon Print Co. — Premium Printing & Corporate Branding in UAE",
       },
     ],
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     title: "Funoon Print Co. | Premium Printing & Corporate Branding in UAE",
     description:
       "Premium printing and branded materials for businesses that care about every detail. Sharjah, UAE.",
-    images: ["/og-image-v2.png"],
+    images: ["/og-image.jpg"],
   },
   robots: { index: true, follow: true },
 }
