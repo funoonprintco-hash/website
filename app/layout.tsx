@@ -40,6 +40,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Funoon Print Co." }],
   openGraph: {
     type: "website",
+    url: "https://funoonprintco.com",
     locale: "en_AE",
     title: "Funoon Print Co. | Premium Printing & Corporate Branding in UAE",
     description:
