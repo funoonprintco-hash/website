@@ -187,7 +187,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         ref={screenRef}
         className="ls"
         role="status"
-        aria-label="Loading Funoon Print Co."
+        aria-label="Loading Funoon FZC"
         aria-live="polite"
       >
         {/* Paper grain */}
@@ -258,7 +258,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/brand/funoon-logo-dark.svg"
-              alt="Funoon Print Co."
+              alt="Funoon FZC"
               className="ls-logo-img"
             />
             {/* Spot UV gloss pass */}

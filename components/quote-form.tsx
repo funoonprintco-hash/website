@@ -1,138 +1,277 @@
-"use client"
-
-import { useActionState } from "react"
-import { submitEnquiry, type EnquiryState } from "@/app/actions"
-import { serviceOptions } from "@/lib/services"
-import { SixBars } from "@/components/six-bars"
-import { cn } from "@/lib/utils"
-
-const initialState: EnquiryState = { status: "idle" }
-
-const fieldBase =
-  "w-full rounded-[2px] border border-border bg-background px-4 py-3.5 font-sans text-sm text-ink transition-colors duration-200 placeholder:text-graphite-mid/70 focus:border-ink focus-visible:outline-none"
-
-export function QuoteForm({ defaultService }: { defaultService?: string }) {
-  const [state, formAction, pending] = useActionState(submitEnquiry, initialState)
-
-  if (state.status === "success") {
+"use client";
+import { useActionState, useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { ChevronDown, Check } from "lucide-react";
+import { submitEnquiry, type EnquiryState } from "@/app/actions";
+import { serviceOptions } from "@/lib/services";
+import { solutions } from "@/lib/solutions";
+import { MAX_ARTWORK_BYTES } from "@/lib/enquiry";
+import { site } from "@/lib/site";
+const initialState: EnquiryState = { status: "idle" };
+export function QuoteForm({
+  defaultService,
+  referenceProject,
+}: {
+  defaultService?: string;
+  referenceProject?: string;
+}) {
+  const [state, action, pending] = useActionState(submitEnquiry, initialState);
+  const [fileError, setFileError] = useState("");
+  const statusRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  useEffect(() => {
+    if (state.status !== "idle") statusRef.current?.focus();
+  }, [state]);
+  const options = Array.from(
+    new Set([
+      ...serviceOptions,
+      ...solutions.map((s) => s.fullName),
+      "Corporate Partnership",
+      "Repeat Order",
+      ...(defaultService ? [defaultService] : []),
+    ]),
+  );
+  if (state.status === "success")
     return (
-      <div className="flex min-h-[420px] flex-col items-start justify-center rounded-[2px] border border-border bg-offwhite p-10">
-        <SixBars className="mb-8 h-8 text-ink" />
-        <h3 className="font-display text-3xl font-semibold tracking-[-0.02em]">Enquiry received.</h3>
-        <p className="mt-4 max-w-md font-sans text-base leading-relaxed text-graphite-mid">
-          {state.message}
+      <div className="form-success" ref={statusRef} tabIndex={-1} role="status">
+        <Check size={28} />
+        <h2>Enquiry sent.</h2>
+        <p>{state.message}</p>
+        <p>
+          Your reference: <strong>{state.reference}</strong>
         </p>
+        <a href={site.whatsappHref} className="text-link">
+          Continue on WhatsApp
+        </a>
       </div>
-    )
-  }
-
-  return (
-    <form action={formAction} className="grid gap-5" noValidate>
-      {/* Honeypot */}
+    );
+  const field = (
+    name: string,
+    label: string,
+    type = "text",
+    required = true,
+    placeholder = "",
+    maxLength = 160,
+  ) => (
+    <div className="form-field">
+      <label htmlFor={`enquiry-${name}`}>
+        {label}
+        {!required && <span> (optional)</span>}
+      </label>
       <input
-        type="text"
-        name="company_website"
-        tabIndex={-1}
-        autoComplete="off"
-        aria-hidden="true"
-        className="absolute -left-[9999px] h-0 w-0 opacity-0"
+        id={`enquiry-${name}`}
+        name={name}
+        type={type}
+        required={required}
+        placeholder={placeholder}
+        maxLength={maxLength}
+        autoComplete={
+          (
+            {
+              company: "organization",
+              name: "name",
+              email: "email",
+              phone: "tel",
+            } as Record<string, string>
+          )[name]
+        }
+        min={type === "number" ? 1 : undefined}
+        max={type === "number" ? 10000000 : undefined}
+        step={type === "number" ? 1 : undefined}
+        aria-invalid={!!state.errors?.[name]}
+        aria-describedby={state.errors?.[name] ? `${name}-error` : undefined}
       />
-
-      <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Name" error={state.errors?.name}>
-          <input name="name" type="text" placeholder="Your name" className={fieldBase} />
-        </Field>
-        <Field label="Email" error={state.errors?.email}>
-          <input name="email" type="email" placeholder="you@company.com" className={fieldBase} />
-        </Field>
+      {state.errors?.[name] && (
+        <p id={`${name}-error`} className="field-error">
+          {state.errors[name]}
+        </p>
+      )}
+    </div>
+  );
+  return (
+    <form
+      ref={formRef}
+      action={action}
+      className="quote-form"
+      aria-busy={pending}
+      onSubmit={(event) => {
+        if (pending || fileError) {
+          event.preventDefault();
+          return;
+        }
+        // React resets uncontrolled forms after an action. Retain entered values on server errors.
+        const form = event.currentTarget;
+        for (const control of Array.from(form.elements)) {
+          if (control instanceof HTMLInputElement && control.type !== "file")
+            control.defaultValue = control.value;
+          else if (control instanceof HTMLTextAreaElement)
+            control.defaultValue = control.value;
+          else if (control instanceof HTMLSelectElement)
+            for (const option of control.options)
+              option.defaultSelected = option.selected;
+        }
+      }}
+    >
+      <div className="trap-field" aria-hidden="true">
+        <label htmlFor="company-website">Leave this field empty</label>
+        <input
+          id="company-website"
+          name="company_website"
+          tabIndex={-1}
+          autoComplete="off"
+        />
       </div>
-
-      <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Phone" optional>
-          <input name="phone" type="tel" placeholder="+971 —" className={fieldBase} />
-        </Field>
-        <Field label="Company" optional>
-          <input name="company" type="text" placeholder="Company name" className={fieldBase} />
-        </Field>
+      <input type="hidden" name="reference" value={referenceProject ?? ""} />
+      {referenceProject && (
+        <p className="form-status">Project reference: {referenceProject}</p>
+      )}
+      <p className="field-hint">
+        All fields are required unless marked optional.
+      </p>
+      <div className="form-row">
+        {field("company", "Company name", "text", true, "Your company")}
+        {field("name", "Contact person", "text", true, "Your name", 100)}
       </div>
-
-      <Field label="Service" error={state.errors?.service}>
-        <div className="relative">
+      <div className="form-row">
+        {field("email", "Work email", "email", true, "you@company.com", 254)}
+        {field("phone", "Phone / WhatsApp", "tel", true, "+971", 40)}
+      </div>
+      <div className="form-field">
+        <label htmlFor="enquiry-service">Product category</label>
+        <div className="form-select">
           <select
+            id="enquiry-service"
             name="service"
+            required
             defaultValue={defaultService ?? ""}
-            className={cn(fieldBase, "appearance-none pr-10")}
+            aria-invalid={!!state.errors?.service}
+            aria-describedby={
+              state.errors?.service ? "service-error" : undefined
+            }
           >
             <option value="" disabled>
-              Select a service
+              Select a category
             </option>
-            {serviceOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
+            {options.map((o) => (
+              <option key={o} value={o}>
+                {o}
               </option>
             ))}
           </select>
-          <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-graphite-mid">
-            ↓
-          </span>
+          <ChevronDown size={18} />
         </div>
-      </Field>
-
-      <Field label="Project details" error={state.errors?.message}>
+        {state.errors?.service && (
+          <p id="service-error" className="field-error">
+            {state.errors.service}
+          </p>
+        )}
+      </div>
+      <div className="form-field">
+        <label htmlFor="enquiry-message">Product description</label>
         <textarea
+          id="enquiry-message"
           name="message"
-          rows={5}
-          placeholder="Tell us about your project — quantities, timelines, and anything else that helps."
-          className={cn(fieldBase, "resize-none")}
+          required
+          maxLength={5000}
+          rows={4}
+          placeholder="What would you like to create? Include dimensions, materials or finishes if known."
+          aria-invalid={!!state.errors?.message}
+          aria-describedby={state.errors?.message ? "message-error" : undefined}
         />
-      </Field>
-
-      {state.status === "error" && state.message ? (
-        <p className="font-sans text-sm text-ink" role="alert">
-          {state.message}
+        {state.errors?.message && (
+          <p id="message-error" className="field-error">
+            {state.errors.message}
+          </p>
+        )}
+      </div>
+      <div className="form-row">
+        {field(
+          "quantity",
+          "Estimated quantity",
+          "number",
+          false,
+          "e.g. 250",
+          12,
+        )}
+        {field("deliveryDate", "Required delivery date", "date", false, "", 10)}
+      </div>
+      {field(
+        "location",
+        "Delivery location",
+        "text",
+        true,
+        "Emirate, area or delivery address",
+        300,
+      )}
+      <div className="form-field">
+        <label htmlFor="enquiry-artwork">
+          Artwork or reference <span>(optional)</span>
+        </label>
+        <input
+          id="enquiry-artwork"
+          type="file"
+          name="artwork"
+          accept=".pdf,.png,.jpg,.jpeg"
+          aria-describedby="artwork-hint artwork-error"
+          aria-invalid={!!(fileError || state.errors?.artwork)}
+          onChange={(event) => {
+            const file = event.target.files?.[0];
+            setFileError(
+              file && file.size > MAX_ARTWORK_BYTES
+                ? "Choose a file of 3 MB or less."
+                : "",
+            );
+          }}
+        />
+        <p id="artwork-hint" className="field-hint">
+          One PDF, JPG or PNG, up to 3 MB. For larger artwork, send the enquiry
+          first and we’ll arrange a suitable transfer. Reattach your file if a
+          submission needs correcting.
         </p>
-      ) : null}
-
+        <p id="artwork-error" className="field-error">
+          {fileError || state.errors?.artwork}
+        </p>
+      </div>
+      <div className="form-field">
+        <label htmlFor="enquiry-additional">
+          Additional requirements <span>(optional)</span>
+        </label>
+        <textarea
+          id="enquiry-additional"
+          name="additional"
+          rows={3}
+          maxLength={3000}
+          placeholder="Budget guidance, packaging needs, previous order reference or anything else we should know."
+          aria-invalid={!!state.errors?.additional}
+          aria-describedby={
+            state.errors?.additional ? "additional-error" : undefined
+          }
+        />
+        {state.errors?.additional && (
+          <p className="field-error" id="additional-error">
+            {state.errors.additional}
+          </p>
+        )}
+      </div>
+      <p className="privacy-note">
+        We use these details to respond to your enquiry and discuss your
+        project. <Link href="/privacy">How we handle your information</Link>.
+      </p>
+      {state.status === "error" && (
+        <div className="form-status" ref={statusRef} tabIndex={-1} role="alert">
+          {state.message ?? "Please check the highlighted fields."}{" "}
+          <a href={site.emailHref} className="text-link">
+            Email us directly
+          </a>
+        </div>
+      )}
       <button
+        className="button button-black"
         type="submit"
-        disabled={pending}
-        className="group mt-2 inline-flex items-center justify-center gap-3 rounded-[2px] bg-ink px-7 py-4 font-sans text-[13px] font-medium uppercase tracking-[0.14em] text-background transition-colors duration-300 hover:bg-graphite disabled:opacity-60"
+        disabled={pending || !!fileError}
       >
-        {pending ? "Sending…" : "Send Enquiry"}
+        {pending ? "Sending your enquiry…" : "Send Enquiry"}
       </button>
     </form>
-  )
-}
-
-function Field({
-  label,
-  children,
-  error,
-  optional,
-}: {
-  label: string
-  children: React.ReactNode
-  error?: string
-  optional?: boolean
-}) {
-  return (
-    <label className="block">
-      <span className="mb-2 flex items-baseline justify-between">
-        <span className="font-sans text-[11px] uppercase tracking-label text-graphite-mid">
-          {label}
-        </span>
-        {optional ? (
-          <span className="font-sans text-[10px] uppercase tracking-label text-graphite-mid/60">
-            Optional
-          </span>
-        ) : null}
-      </span>
-      {children}
-      {error ? (
-        <span className="mt-2 block font-sans text-xs text-ink" role="alert">
-          {error}
-        </span>
-      ) : null}
-    </label>
-  )
+  );
 }

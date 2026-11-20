@@ -29,14 +29,14 @@ export function HeroImage() {
     let cy = 0
 
     // rAF lerp — approximates a critically damped spring at ~0.06 factor per frame
-    function tick() {
+    const tick = () => {
       cx += (tx - cx) * 0.06
       cy += (ty - cy) * 0.06
       img.style.transform = `translate(${cx.toFixed(2)}px, ${cy.toFixed(2)}px) scale(1.08)`
       rafId = requestAnimationFrame(tick)
     }
 
-    function onMove(e: MouseEvent) {
+    const onMove = (e: MouseEvent) => {
       const rect = wrap.getBoundingClientRect()
       const normX = ((e.clientX - rect.left) / rect.width - 0.5) * 2  // [-1, 1]
       const normY = ((e.clientY - rect.top) / rect.height - 0.5) * 2
@@ -76,7 +76,7 @@ export function HeroImage() {
       >
         <Image
           src="/work/hero-business-cards.png"
-          alt="Funoon Print Co. business cards — black front with logo and white back with contact details on a stone surface"
+          alt="Funoon FZC business cards — black front with logo and white back with contact details on a stone surface"
           fill
           priority
           sizes="(max-width: 1024px) 100vw, 40vw"

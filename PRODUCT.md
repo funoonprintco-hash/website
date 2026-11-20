@@ -19,7 +19,7 @@ Seek branded packaging, menus, labels, and promotional material that matches the
 
 ## Product Purpose
 
-Funoon Print Co. is a premium printing and corporate branding company based in Sharjah, UAE. The website serves two simultaneous goals:
+Funoon FZC is a premium printing and corporate branding company based in Sharjah, UAE. The website serves two simultaneous goals:
 
 1. **Drive orders and enquiries** — convert visitors into concrete quote requests, WhatsApp messages, or phone calls.
 2. **Portfolio showcase** — the site itself is evidence of Funoon's craft. A business deciding whether to trust Funoon with their brand will judge the print company's own brand identity first. The site must feel premium enough to be proof.
@@ -53,19 +53,19 @@ Business Cards, Corporate Gifts, Roll-Up Banners, Flyers, Brochures, Corporate A
 
 **Contact:** +971 54 170 7274 · enquiry@funoonprintco.com · Sharjah, UAE
 
-**Office address:** Not yet confirmed. Map placeholder centred on Sharjah.
+**Office address:** Block B - B47-009, Sharjah Research Technology and Innovation Park, Sharjah, UAE.
 
 **Business hours:** Not yet confirmed. Placeholder in UI.
 
 **Social:** Instagram and LinkedIn placeholders — live URLs not yet provided.
 
-**Real portfolio photography:** Not yet available. Site currently uses premium placeholder mockups designed to be replaced without structural changes.
+**Real portfolio photography:** Maxline business cards and banner images approved by the user on 20 November 2026. Other images remain labelled product concepts.
 
 **Do not fabricate:** client names, testimonials, statistics, awards, certifications, pricing.
 
 ## Brand Commitments
 
-- **Name:** Funoon Print Co.
+- **Name:** Funoon FZC
 - **Tagline:** "Made to be seen."
 - **Positioning line:** Premium Printing & Corporate Branding
 - **Logo:** Six-bar mark + wordmark. Official PNG assets in `/public/brand/`. Do not alter proportions, spacing, colours, or recreate in HTML. Use dark variant on light backgrounds; light/reversed on dark.
@@ -78,7 +78,7 @@ Business Cards, Corporate Gifts, Roll-Up Banners, Flyers, Brochures, Corporate A
 
 - Official logo assets: `/public/brand/funoon-logo-dark.png`, `/public/brand/funoon-logo-light.png`
 - Placeholder work photography: `/public/work/*.png` (11 images covering business cards, packaging, apparel, stationery, large format, brochure, gifts, stickers, letterheads, studio detail, quality detail)
-- No real client project photography yet
+- Approved Maxline business-card and banner photographs
 - No testimonials, press mentions, or awards on file
 
 ## Product Principles

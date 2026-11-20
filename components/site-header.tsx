@@ -1,185 +1,121 @@
-"use client"
-
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { useEffect, useState } from "react"
-import { createPortal } from "react-dom"
-import { motion, LayoutGroup, AnimatePresence } from "motion/react"
-import { Logo } from "@/components/logo"
-import { BrandButton } from "@/components/brand-button"
-import { nav, site } from "@/lib/site"
-import { cn } from "@/lib/utils"
-
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { Menu, X } from "lucide-react";
+import { Logo } from "@/components/logo";
+import { nav, site } from "@/lib/site";
 export function SiteHeader() {
-  const [scrolled, setScrolled] = useState(false)
-  const [open, setOpen] = useState(false)
-  const [mounted, setMounted] = useState(false)
-  const pathname = usePathname()
-
-  useEffect(() => { setMounted(true) }, [])
-
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDialogElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
-    onScroll()
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
-
-  useEffect(() => { setOpen(false) }, [pathname])
-
+    setOpen(false);
+  }, [pathname]);
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : ""
-    return () => { document.body.style.overflow = "" }
-  }, [open])
-
+    if (open) {
+      menuRef.current?.showModal();
+      document.body.style.overflow = "hidden";
+    } else {
+      menuRef.current?.close();
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 1100px)");
+    const close = () => {
+      if (media.matches) setOpen(false);
+    };
+    media.addEventListener("change", close);
+    return () => media.removeEventListener("change", close);
+  }, []);
+  const active = (href: string) =>
+    pathname === href ||
+    (href !== "/" && pathname.startsWith(href)) ||
+    (href === "/products" && pathname.startsWith("/services"));
   return (
     <>
-      {/* Floating pill navbar */}
-      <div className="fixed inset-x-0 top-0 z-[9999] flex justify-center px-4 py-5 pointer-events-none">
-        <motion.div
-          initial={{ opacity: 0, y: -12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 320, damping: 28, delay: 0.1 }}
-          className={cn(
-            "pointer-events-auto flex items-center justify-between w-full max-w-4xl rounded-full border px-4 py-2 transition-all duration-500",
-            scrolled
-              ? "bg-white/50 backdrop-blur-2xl border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.8)]"
-              : "bg-white/30 backdrop-blur-xl border-white/25 shadow-[0_4px_24px_rgba(0,0,0,0.07),inset_0_1px_0_rgba(255,255,255,0.6)]",
-          )}
-        >
-          {/* Logo */}
-          <Link
-            href="/"
-            aria-label="Funoon Print Co. home"
-            className="flex items-center shrink-0"
-          >
-            <motion.div
-              animate={{ height: scrolled ? 56 : 44 }}
-              transition={{ type: "spring", stiffness: 320, damping: 28 }}
-              style={{ overflow: "hidden" }}
-            >
-              <Logo
-                variant="dark"
-                priority
-                className={cn("w-auto transition-all duration-500", scrolled ? "h-14" : "h-11")}
-              />
-            </motion.div>
+      <header className="site-header site-nav-intro">
+        <div className="shell header-inner">
+          <Link href="/" aria-label="Funoon FZC home">
+            <Logo variant="light" priority />
           </Link>
-
-          {/* Desktop nav — spring-animated active pill */}
-          <LayoutGroup>
-            <nav className="hidden lg:flex items-center gap-0.5" aria-label="Primary">
-              {nav.map((item) => {
-                const active =
-                  pathname === item.href ||
-                  (item.href !== "/" && pathname.startsWith(item.href))
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="relative px-4 py-2 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ink"
-                  >
-                    {active && (
-                      <motion.div
-                        layoutId="nav-active-pill"
-                        className="absolute inset-0 rounded-full bg-ink"
-                        transition={{ type: "spring", stiffness: 380, damping: 30, mass: 0.9 }}
-                      />
-                    )}
-                    <span
-                      className={cn(
-                        "relative z-10 font-sans text-[13px] uppercase tracking-[0.14em] transition-colors duration-200",
-                        active ? "text-background" : "text-graphite-mid hover:text-ink",
-                      )}
-                    >
-                      {item.label}
-                    </span>
-                  </Link>
-                )
-              })}
-            </nav>
-          </LayoutGroup>
-
-          {/* Right side — CTA + hamburger */}
-          <div className="flex items-center gap-3">
-            <div className="hidden lg:block">
-              <BrandButton href="/quote" variant="primary" className="px-5 py-2.5 text-[12px]">
-                Request a Quote
-              </BrandButton>
-            </div>
-
-            {/* Hamburger */}
+          <nav className="desktop-nav" aria-label="Main navigation">
+            {nav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={active(item.href) ? "page" : undefined}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+          <div className="header-actions">
+            <Link className="button button-white header-quote" href="/quote">
+              Request a Quote
+            </Link>
             <button
-              type="button"
-              aria-label={open ? "Close menu" : "Open menu"}
+              ref={triggerRef}
+              className="menu-toggle"
+              aria-label="Open navigation"
+              aria-controls="mobile-navigation"
               aria-expanded={open}
-              onClick={() => setOpen((v) => !v)}
-              className="lg:hidden relative flex h-9 w-9 flex-col items-center justify-center gap-[5px]"
+              onClick={() => setOpen(true)}
             >
-              <motion.span
-                animate={open ? { rotate: 45, y: 3 } : { rotate: 0, y: 0 }}
-                transition={{ type: "spring", stiffness: 400, damping: 28 }}
-                className="h-px w-5 bg-ink origin-center"
-              />
-              <motion.span
-                animate={open ? { rotate: -45, y: -3 } : { rotate: 0, y: 0 }}
-                transition={{ type: "spring", stiffness: 400, damping: 28 }}
-                className="h-px w-5 bg-ink origin-center"
-              />
+              <Menu size={24} />
             </button>
           </div>
-        </motion.div>
-      </div>
-
-      {/* Mobile menu portal */}
-      {mounted && createPortal(
-        <div
-          aria-hidden={!open}
-          className={cn(
-            "fixed inset-0 flex flex-col bg-background transition-opacity duration-300 lg:hidden",
-            open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
-          )}
-          style={{ zIndex: 9998 }}
-        >
-          <div className="flex flex-1 flex-col justify-center gap-1 px-8">
-            <AnimatePresence>
-              {open && nav.map((item, i) => (
-                <motion.div
-                  key={item.href}
-                  initial={{ opacity: 0, x: -32 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ type: "spring", stiffness: 340, damping: 28, delay: i * 0.07 }}
-                >
-                  <Link
-                    href={item.href}
-                    className="block font-display text-5xl font-semibold tracking-[-0.02em] text-ink py-1.5"
-                  >
-                    {item.label}
-                  </Link>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={open ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-            transition={{ type: "spring", stiffness: 300, damping: 28, delay: 0.28 }}
-            className="border-t border-border px-8 py-8"
+        </div>
+      </header>
+      <dialog
+        ref={menuRef}
+        id="mobile-navigation"
+        className="mobile-menu"
+        onCancel={() => setOpen(false)}
+        onClose={() => {
+          setOpen(false);
+          triggerRef.current?.focus();
+        }}
+        aria-label="Navigation"
+      >
+        <div className="mobile-menu-top">
+          <Logo variant="light" />
+          <button
+            className="menu-close"
+            aria-label="Close navigation"
+            onClick={() => setOpen(false)}
           >
-            <BrandButton href="/quote" variant="primary" className="mb-6 w-full">
-              Request a Quote
-            </BrandButton>
-            <div className="flex flex-col gap-3 font-sans text-sm text-graphite">
-              <a href={site.phoneHref} className="hover:text-ink">Call {site.phone}</a>
-              <a href={site.whatsappHref} className="hover:text-ink">WhatsApp</a>
-              <a href={site.emailHref} className="hover:text-ink">{site.email}</a>
-            </div>
-          </motion.div>
-        </div>,
-        document.body,
-      )}
+            <X size={28} />
+          </button>
+        </div>
+        <nav aria-label="Mobile navigation">
+          {nav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setOpen(false)}
+              aria-current={active(item.href) ? "page" : undefined}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+        <Link
+          href="/quote"
+          className="button button-white"
+          onClick={() => setOpen(false)}
+        >
+          Request a Quote
+        </Link>
+        <a className="mobile-phone" href={site.phoneHref}>
+          {site.phone}
+        </a>
+      </dialog>
     </>
-  )
+  );
 }

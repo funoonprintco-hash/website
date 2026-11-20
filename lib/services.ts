@@ -22,8 +22,8 @@ export const services: Service[] = [
     short: "The first thing you hand over. Made to be remembered.",
     description:
       "Considered business cards that carry a brand with confidence — from paper weight and finish to the feel of the edge in hand.",
-    image: "/work/hero-business-cards.png",
-    imageAlt: "Stack of premium matte black business cards showing layered paper edges",
+    image: "/work/corporate-stationery.png",
+    imageAlt: "Stationery material concept showing unbranded paper formats",
     goodFor: ["Corporate teams", "Sales teams", "Networking", "Client meetings", "Events"],
     options: [
       { label: "Paper", examples: ["Uncoated", "Textured", "Heavy cotton"] },

@@ -1,58 +1,57 @@
-"use client"
-
-import { useState } from "react"
-import { PortfolioCard } from "@/components/portfolio-card"
-import { Reveal } from "@/components/reveal"
-import { workItems, workFilters, type WorkCategory } from "@/lib/portfolio"
-import { cn } from "@/lib/utils"
-
+"use client";
+import { useState } from "react";
+import Link from "next/link";
+import { workItems, workFilters, type WorkCategory } from "@/lib/portfolio";
+import { WorkCard } from "@/components/work-card";
 export function WorkGrid() {
-  const [active, setActive] = useState<WorkCategory | "All">("All")
-
-  const filtered =
-    active === "All" ? workItems : workItems.filter((item) => item.category === active)
-
+  const [active, setActive] = useState<WorkCategory | "All">("All");
+  const items =
+    active === "All"
+      ? workItems
+      : workItems.filter((w) => w.category === active);
   return (
     <>
-      {/* Filter bar */}
-      <div className="border-b border-border">
-        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="flex gap-0 overflow-x-auto scrollbar-none">
-            {workFilters.map((filter) => (
-              <button
-                key={filter}
-                type="button"
-                onClick={() => setActive(filter)}
-                className={cn(
-                  "shrink-0 border-b-2 pb-4 pr-7 pt-5 font-sans text-[12px] uppercase tracking-[0.18em] transition-colors duration-200",
-                  active === filter
-                    ? "border-ink text-ink"
-                    : "border-transparent text-graphite-mid hover:text-ink",
-                )}
-              >
-                {filter}
-              </button>
-            ))}
-          </div>
-        </div>
+      <div
+        className="work-filters"
+        role="group"
+        aria-label="Filter completed work"
+      >
+        {workFilters.map((f) => (
+          <button
+            key={f}
+            type="button"
+            aria-pressed={active === f}
+            onClick={() => setActive(f)}
+          >
+            {f}
+          </button>
+        ))}
       </div>
-
-      {/* Grid */}
-      <div className="mx-auto max-w-[1400px] px-5 py-16 md:px-10 md:py-20">
-        <div className="grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((item, i) => (
-            <Reveal key={`${active}-${item.slug}`} delay={(i % 3) * 60}>
-              <PortfolioCard item={item} priority={i < 3} />
-            </Reveal>
+      <p className="results-count" role="status">
+        {items.length} {items.length === 1 ? "project" : "projects"}
+        {active !== "All" ? ` in ${active}` : " selected"}
+      </p>
+      {items.length ? (
+        <div className="work-pair">
+          {items.map((item) => (
+            <WorkCard key={item.slug} item={item} />
           ))}
         </div>
-
-        {filtered.length === 0 && (
-          <p className="py-20 text-center font-sans text-sm text-graphite-mid">
-            No projects in this category yet.
+      ) : (
+        <div className="empty-work">
+          <h2>More work to share, in time.</h2>
+          <p>
+            We haven’t published a project in this category yet. Tell us what
+            you have in mind and we can discuss relevant options.
           </p>
-        )}
-      </div>
+          <Link
+            href={`/quote?service=${encodeURIComponent(active)}`}
+            className="button button-black"
+          >
+            Discuss Your Project
+          </Link>
+        </div>
+      )}
     </>
-  )
+  );
 }

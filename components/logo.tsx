@@ -1,25 +1,24 @@
-import { cn } from "@/lib/utils"
-
-// `dark` = black artwork for light backgrounds. `light` = white artwork for dark backgrounds.
+import { cn } from "@/lib/utils";
+// Original vector symbol and wordmark; the legacy suffix is outside the viewBox.
 export function Logo({
   variant = "dark",
   className,
-  priority: _priority,
+  priority = false,
 }: {
-  variant?: "dark" | "light"
-  className?: string
-  priority?: boolean
+  variant?: "dark" | "light";
+  className?: string;
+  priority?: boolean;
 }) {
-  const src = variant === "light"
-    ? "/brand/funoon-logo-light.svg"
-    : "/brand/funoon-logo-dark.svg"
-
-  // eslint-disable-next-line @next/next/no-img-element
   return (
-    <img
-      src={src}
-      alt="Funoon Print Co."
-      className={cn("h-auto w-auto object-contain", className)}
-    />
-  )
+    <span className={cn("brand-logo", className)} aria-label="Funoon FZC">
+      <img
+        src={`/brand/funoon-wordmark-${variant}.svg`}
+        alt=""
+        width="1870"
+        height="1135"
+        fetchPriority={priority ? "high" : "auto"}
+      />
+      <span className="brand-suffix">FZC</span>
+    </span>
+  );
 }

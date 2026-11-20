@@ -1,9 +1,9 @@
 "use client"
 
 import Script from "next/script"
-import { useEffect, useRef } from "react"
+import type React from "react"
 
-declare global {
+declare module "react" {
   namespace JSX {
     interface IntrinsicElements {
       "model-viewer": React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
@@ -12,6 +12,8 @@ declare global {
         "auto-rotate"?: boolean | string
         "camera-controls"?: boolean | string
         "shadow-intensity"?: string
+        "camera-orbit"?: string
+        "field-of-view"?: string
         exposure?: string
         "rotation-per-second"?: string
         style?: React.CSSProperties
@@ -31,7 +33,7 @@ export function Logo3D() {
       />
       <model-viewer
         src="/funoon-business-card.glb"
-        alt="Funoon Print Co. business card 3D"
+        alt="Funoon FZC business card 3D"
         auto-rotate
         camera-controls
         shadow-intensity="1.5"
