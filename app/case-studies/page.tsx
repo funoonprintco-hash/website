@@ -1,3 +1,4 @@
+import { MaxlineComparison } from "@/components/maxline-comparison";
 import Link from "next/link";
 import { PageIntro, ProjectCTA } from "@/components/editorial";
 import { caseStudies } from "@/lib/case-studies";
@@ -47,6 +48,7 @@ export default function CaseStudiesPage() {
                 </section>
               ))}
             </div>
+            {s.slug === "maxline-business-cards" && <MaxlineComparison />}
           </article>
         ))}
       </div>

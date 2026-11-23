@@ -1,3 +1,4 @@
+import { MaxlineComparison } from "@/components/maxline-comparison";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { workItems } from "@/lib/portfolio";
@@ -33,25 +34,37 @@ export default async function WorkDetail({
           All completed work
         </Link>
       </PageIntro>
-      <section className="shell section project-gallery">
-        {w.gallery.map((img, i) => (
-          <ProductImage
-            key={img.src}
-            src={img.src}
-            alt={img.alt}
-            priority={i === 0}
-          />
-        ))}
-        {w.note && <p className="image-note">{w.note}</p>}
-        {w.video && (
-          <video
-            controls
-            preload="metadata"
-            src={w.video}
-            aria-label={`${w.title} project video`}
-          />
-        )}
-      </section>
+      {slug === "business-cards" ? (
+        <div className="shell section">
+          <MaxlineComparison />
+          <Link
+            className="text-link"
+            href="/case-studies#maxline-business-cards"
+          >
+            Read the project story
+          </Link>
+        </div>
+      ) : (
+        <section className="shell section project-gallery">
+          {w.gallery.map((img, i) => (
+            <ProductImage
+              key={img.src}
+              src={img.src}
+              alt={img.alt}
+              priority={i === 0}
+            />
+          ))}
+          {w.note && <p className="image-note">{w.note}</p>}
+          {w.video && (
+            <video
+              controls
+              preload="metadata"
+              src={w.video}
+              aria-label={`${w.title} project video`}
+            />
+          )}
+        </section>
+      )}
       <section className="shell project-deliverables">
         <h2>What we produced.</h2>
         <ul>

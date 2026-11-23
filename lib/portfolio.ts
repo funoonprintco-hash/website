@@ -37,23 +37,23 @@ export const workItems: WorkItem[] = [
     slug: "business-cards",
     title: "Business Cards",
     category: "Business Cards & Stationery",
-    image: "/work/Maxline-Business-card.png",
+    image: "/work/maxline-card-after.webp",
     imageAlt:
-      "Completed Maxline business cards showing the front and reverse designs",
+      "Maxline vertical business-card redesign mockup with rounded corners and obscured contact details",
     client: "Maxline",
     deliverables: [
       "Printed business cards",
-      "Front and reverse artwork shown in the project photograph",
+      "Vertical card design with rounded corners",
     ],
     size: "wide",
     note: "Contact details are obscured for privacy.",
     description:
-      "A business-card project for Maxline, bringing the company’s identity into an everyday point of contact. The front and reverse designs balance the brand mark with the information a business card needs to carry.",
+      "A business-card project for Maxline, bringing the company’s identity into an everyday point of contact. The redesign moves from a horizontal layout to a vertical format, with rounded corners and a prominent blue contact area.",
     relatedProducts: ["business-cards", "corporate-printing"],
     gallery: [
       {
-        src: "/work/Maxline-Business-card.png",
-        alt: "Maxline business-card front and reverse",
+        src: "/work/maxline-card-after.webp",
+        alt: "Maxline redesigned vertical business cards",
       },
     ],
   },

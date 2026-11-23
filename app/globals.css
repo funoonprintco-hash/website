@@ -2056,3 +2056,43 @@ details p {
     grid-column: auto;
   }
 }
+
+.maxline-comparison {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+.comparison-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+.comparison-images figure {
+  margin: 0;
+  min-width: 0;
+}
+.comparison-images figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 20px;
+  margin-bottom: 16px;
+}
+.comparison-images figcaption span {
+  color: #555;
+}
+.comparison-images img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.maxline-comparison .image-note {
+  margin-block: 20px 28px;
+}
+@media (max-width: 700px) {
+  .comparison-images {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
