@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { FinishExplorer } from "@/components/finish-explorer";
+import { SurfaceLight } from "@/components/surface-light";
 import { BrandMarquee } from "@/components/brand-marquee";
 
 import Image from "next/image";
@@ -51,7 +53,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="hero-media">
+          <SurfaceLight className="hero-media">
             <Image
               src="/work/packaging.png"
               alt="Temporary packaging concept; Funoon business-card photography will replace this image"
@@ -63,7 +65,7 @@ export default function HomePage() {
               <span>Form. Material. Detail.</span>
               <span>Packaging concept</span>
             </div>
-          </div>
+          </SurfaceLight>
         </div>
         <div className="shell hero-bottom">
           <span>PRINT · PACKAGING · MERCHANDISE</span>
@@ -131,7 +133,7 @@ export default function HomePage() {
               that mean business.
             </h2>
             <div>
-              <p>A closer look at completed work.</p>
+              <p>Real projects. A closer look at what we produced.</p>
               <Link href="/work" className="text-link">
                 View our work
               </Link>
@@ -145,6 +147,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      <FinishExplorer />
       <section className="section shell detail-section">
         <div>
           <h2>

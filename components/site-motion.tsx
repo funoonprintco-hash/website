@@ -29,7 +29,7 @@ export function SiteMotion() {
         { threshold: 0.08 },
       );
       const targets = document.querySelectorAll<HTMLElement>(
-        ".brand-introduction, .section-heading, .solution-tile, .work-card, .detail-list article, .process-list li, .partnership-inner, .project-cta .shell, .solution-row, .catalogue-grid > a, .values-grid article, .page-intro h1, .split-editorial > div",
+        ".brand-introduction, .section-heading, .solution-tile, .work-card, .detail-list article, .process-list li, .partnership-inner, .project-cta .shell, .solution-row, .catalogue-grid > a, .values-grid article, .page-intro h1, .split-editorial > div, .finish-layout, .project-deliverables, .project-story article",
       );
       for (const element of targets) {
         if (element.getBoundingClientRect().top < window.innerHeight) continue;

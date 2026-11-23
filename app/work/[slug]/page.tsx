@@ -52,6 +52,37 @@ export default async function WorkDetail({
           />
         )}
       </section>
+      <section className="shell project-deliverables">
+        <h2>What we produced.</h2>
+        <ul>
+          {w.deliverables.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </section>
+      {w.caseStudy?.approved && (
+        <section className="shell project-story">
+          {[
+            ["The brief", w.caseStudy.brief],
+            ["The challenge", w.caseStudy.challenge],
+            ["Our approach", w.caseStudy.approach],
+            ["The result", w.caseStudy.outcome],
+          ].map(([heading, body]) => (
+            <article key={heading}>
+              <h2>{heading}</h2>
+              <p>{body}</p>
+            </article>
+          ))}
+          <article className="project-lessons">
+            <h2>What we learned.</h2>
+            <ul>
+              {w.caseStudy.lessons.map((lesson) => (
+                <li key={lesson}>{lesson}</li>
+              ))}
+            </ul>
+          </article>
+        </section>
+      )}
       <section className="shell project-details">
         <div>
           <h2>Project overview</h2>

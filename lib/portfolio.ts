@@ -21,6 +21,16 @@ export type WorkItem = {
   gallery: { src: string; alt: string }[];
   specifications?: { label: string; value: string }[];
   video?: string;
+  deliverables: string[];
+  // Publish project narratives only after the client supplies and approves the facts.
+  caseStudy?: {
+    approved: boolean;
+    brief: string;
+    challenge: string;
+    approach: string;
+    outcome: string;
+    lessons: string[];
+  };
 };
 export const workItems: WorkItem[] = [
   {
@@ -31,6 +41,10 @@ export const workItems: WorkItem[] = [
     imageAlt:
       "Completed Maxline business cards showing the front and reverse designs",
     client: "Maxline",
+    deliverables: [
+      "Printed business cards",
+      "Front and reverse artwork shown in the project photograph",
+    ],
     size: "wide",
     note: "Contact details are obscured for privacy.",
     description:
@@ -50,6 +64,10 @@ export const workItems: WorkItem[] = [
     image: "/work/maxline-banner.jpeg",
     imageAlt: "Completed Maxline roll-up banner displayed in an interior",
     client: "Maxline",
+    deliverables: [
+      "Branded roll-up banner",
+      "Freestanding display shown in the completed-project photograph",
+    ],
     size: "tall",
     description:
       "A freestanding roll-up banner for Maxline, translating its corporate identity into a larger display format. The completed piece brings the company’s message into a shared physical space.",
