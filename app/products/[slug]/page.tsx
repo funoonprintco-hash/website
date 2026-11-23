@@ -63,6 +63,30 @@ export default async function ProductPage({
           </ul>
         </div>
       </section>
+      {slug === "business-cards" && (
+        <section className="shell section split-editorial">
+          <h2>
+            A printed introduction.
+            <br />A digital connection.
+          </h2>
+          <div>
+            <p>
+              A QR code can connect each card to a personal contact page,
+              tailored to the individual. Bring their role, company details,
+              WhatsApp, LinkedIn, email and website together in one place.
+            </p>
+            <p>
+              Offer a downloadable contact card (vCard) so visitors can add the
+              details to their phone, with confirmation handled by their device.
+              We scope the page, links and contact fields with you as part of
+              the project.
+            </p>
+            <Link className="text-link" href="/quote?service=Business%20Cards">
+              Discuss QR-linked business cards
+            </Link>
+          </div>
+        </section>
+      )}
       {examples.length > 0 && (
         <section className="shell section">
           <div className="section-heading">

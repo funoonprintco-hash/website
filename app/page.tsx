@@ -5,7 +5,8 @@ import { BrandMarquee } from "@/components/brand-marquee";
 
 import Image from "next/image";
 
-import { solutions } from "@/lib/solutions";
+import { coreProducts } from "@/lib/core-products";
+import { caseStudies } from "@/lib/case-studies";
 
 import { ProjectCTA, Process } from "@/components/editorial";
 
@@ -90,19 +91,19 @@ export default function HomePage() {
       <section className="section shell">
         <div className="section-heading">
           <h2>
-            Everything your brand needs.
+            The products we focus on.
             <br />
-            One reliable partner.
+            Quality in every detail.
           </h2>
           <Link className="text-link" href="/solutions">
             Explore our solutions
           </Link>
         </div>
         <div className="solution-grid">
-          {solutions.map((s, i) => (
+          {coreProducts.map((s, i) => (
             <Link
               key={s.slug}
-              href={`/solutions/${s.slug}`}
+              href={`/products/${s.slug}`}
               className={`solution-tile solution-tile-${i}`}
             >
               <div className="solution-image">
@@ -147,6 +148,23 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="shell section home-stories">
+        <div className="section-heading">
+          <h2>The decisions behind the work.</h2>
+          <Link className="text-link" href="/case-studies">
+            Read our project stories
+          </Link>
+        </div>
+        <div className="story-preview-list">
+          {caseStudies.slice(0, 3).map((s) => (
+            <Link key={s.slug} href={`/case-studies#${s.slug}`}>
+              <h3>{s.title}</h3>
+              <p>{s.summary}</p>
+              <span className="text-link">Read the story</span>
+            </Link>
+          ))}
+        </div>
+      </section>
       <FinishExplorer />
       <section className="section shell detail-section">
         <div>

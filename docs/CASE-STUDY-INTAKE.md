@@ -1,9 +1,13 @@
-# Real case study intake
+# Project story provenance
 
-The generated business-card mockup was rejected by the user and is not in the website. Await the approved replacement. Maxline card and banner photographs remain approved completed work.
+Owner supplied first-hand accounts on 23 November 2026. Published in lib/case-studies.ts.
 
-For each project collect: publishable client/project name; deliverables; original brief; quantities/materials if verified; challenge; actual response; outcome; lessons learned; approved photographs; permission to publish the narrative.
-
-Store the approved narrative in lib/portfolio.ts under caseStudy and set approved:true only after confirmation. The project template includes brief, challenge, approach, outcome and lessons. Unapproved or missing narratives are not rendered. Do not derive outcomes or production lessons from product photos.
-
-Known work currently supports only the existing descriptions and deliverable lists. Main product priority awaits user confirmation; current catalogue contains business cards, gifts, packaging, apparel, stationery and display print.
+- Urgent roll-ups, perfume label trial and community apparel are anonymous. Do not associate them with Maxline or show defect/client photos without approval.
+- Roll-up timing: morning order, evening inspection, replacement delivered before the next-day event. Do not promise same-day service universally.
+- Perfume sample: conventional sticker versus UV DTF misunderstanding; sample payment returned. No claim that a replacement order was delivered.
+- Apparel: better second sample selected and delivered. No claims about UAE-best suppliers or geopolitical causes.
+- Maxline cards: positive employee response observed by owner, not a testimonial or measured motivation/sales improvement. Before/after imagery pending.
+- Maxline gifts: order confirmed; quantities, items and photos not yet supplied.
+- QR personal contact page is an offered capability, not asserted as delivered to Maxline. Do not promise automatic contact saving; devices require user confirmation.
+- Rejected generated Funoon card image remains excluded. Await user mockup.
+- Core product priority: business cards, corporate gifts, uniforms/apparel, packaging.

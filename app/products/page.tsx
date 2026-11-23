@@ -1,3 +1,4 @@
+import { coreProducts } from "@/lib/core-products";
 import Link from "next/link";
 import { services } from "@/lib/services";
 import { PageIntro, ProductImage, ProjectCTA } from "@/components/editorial";
@@ -16,7 +17,14 @@ export default function ProductsPage() {
       />
       <section className="shell section">
         <div className="catalogue-grid">
-          {services.map((s) => (
+          {[
+            ...coreProducts.map((p) =>
+              services.find((s) => s.slug === p.slug)!,
+            ),
+            ...services.filter(
+              (s) => !coreProducts.some((p) => p.slug === s.slug),
+            ),
+          ].map((s) => (
             <Link href={`/products/${s.slug}`} key={s.slug}>
               <ProductImage src={s.image} alt={s.imageAlt} concept />
               <h2>{s.name}</h2>
