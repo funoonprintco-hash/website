@@ -141,7 +141,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="work-pair">
-            {workItems.map((item) => (
+            {workItems.slice(0, 2).map((item) => (
               <WorkCard key={item.slug} item={item} />
             ))}
           </div>

@@ -79,6 +79,19 @@ export const workItems: WorkItem[] = [
       },
     ],
   },
+  {
+    slug: "business-card-delivery-boxes",
+    title: "Business-card delivery boxes",
+    category: "Packaging",
+    image: "/work/funoon-business-card-delivery-boxes.webp",
+    imageAlt: "Funoon-branded kraft business-card delivery boxes with the six-bar mark and website address",
+    client: "Funoon FZC",
+    size: "tall",
+    deliverables: ["Branded kraft boxes for business-card delivery"],
+    description: "Our own business-card delivery packaging: kraft boxes carrying the Funoon mark and website address. A considered presentation for the cards we hand over.",
+    relatedProducts: ["business-cards", "packaging"],
+    gallery: [{src: "/work/funoon-business-card-delivery-boxes.webp", alt: "Funoon business-card delivery boxes photographed together"}],
+  },
 ];
 export const workFilters: (WorkCategory | "All")[] = [
   "All",
