@@ -11,3 +11,5 @@ Owner supplied first-hand accounts on 23 November 2026. Published in lib/case-st
 - QR personal contact page is an offered capability, not asserted as delivered to Maxline. Do not promise automatic contact saving; devices require user confirmation.
 - Rejected generated Funoon card image remains excluded. Await user mockup.
 - Core product priority: business cards, corporate gifts, uniforms/apparel, packaging.
+
+Updated mockups supplied 24 November 2026 replace pixelated contact blocks with sample names and contact details; QR codes remain blurred. Horizontal before / bilingual vertical after mapping retained.
