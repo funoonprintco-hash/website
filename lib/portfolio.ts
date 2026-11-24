@@ -92,6 +92,24 @@ export const workItems: WorkItem[] = [
     relatedProducts: ["business-cards", "packaging"],
     gallery: [{src: "/work/funoon-business-card-delivery-boxes.webp", alt: "Funoon business-card delivery boxes photographed together"}],
   },
+  {
+    slug: "maxline-corporate-gifts",
+    title: "Corporate Gifts",
+    category: "Corporate Gifts",
+    image: "/work/maxline-gifts-mug.webp",
+    imageAlt: "Styled image of a black Maxline-branded mug with a contrasting base",
+    client: "Maxline",
+    deliverables: ["Branded carry bags", "Branded USB drives", "Branded desk accessories", "Branded mugs"],
+    description: "A corporate-gifts project for Maxline, carrying its identity across bags, USB drives, desk accessories and mugs. A consistent brand presence across a selection of everyday items.",
+    note: "Styled product images supplied for this project. Product specifications are confirmed individually for each new order.",
+    relatedProducts: ["corporate-gifts"],
+    gallery: [
+      {src:"/work/maxline-gifts-bag.webp",alt:"Maxline branded carry bag — styled product image"},
+      {src:"/work/maxline-gifts-usb.webp",alt:"Maxline branded USB drive — styled product image"},
+      {src:"/work/maxline-gifts-desk-accessory.webp",alt:"Maxline branded desk accessory — styled product image"},
+      {src:"/work/maxline-gifts-mug.webp",alt:"Maxline branded mug — styled product image"},
+    ],
+  },
 ];
 export const workFilters: (WorkCategory | "All")[] = [
   "All",

@@ -45,7 +45,7 @@ export default async function WorkDetail({
           </Link>
         </div>
       ) : (
-        <section className="shell section project-gallery">
+        <section className={`shell section project-gallery ${slug === "maxline-corporate-gifts" ? "project-gallery-gifts" : ""}`}>
           {w.gallery.map((img, i) => (
             <ProductImage
               key={img.src}

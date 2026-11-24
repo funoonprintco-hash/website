@@ -59,8 +59,8 @@ export default function CaseStudiesPage() {
           extending the relationship beyond business cards and display
           materials.
         </p>
-        <Link className="text-link" href="/products/corporate-gifts">
-          Explore corporate gifts
+        <Link className="text-link" href="/work/maxline-corporate-gifts">
+          View Maxline’s corporate gifts
         </Link>
       </section>
       <ProjectCTA title="Tell us what your project needs." />

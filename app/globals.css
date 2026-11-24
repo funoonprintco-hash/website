@@ -2099,3 +2099,8 @@ details p {
 
 /* Preserve the complete supplied card artwork in the landing image. */
 .hero-media > img { object-fit:contain; background:#252525; }
+
+.project-gallery-gifts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px; }
+.project-gallery-gifts .product-image { aspect-ratio:1; min-height:0; margin:0; }
+.project-gallery-gifts .image-note { grid-column:1 / -1; }
+@media(max-width:700px) { .project-gallery-gifts { grid-template-columns:1fr; } }

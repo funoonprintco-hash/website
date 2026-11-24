@@ -13,3 +13,5 @@ Owner supplied first-hand accounts on 23 November 2026. Published in lib/case-st
 - Core product priority: business cards, corporate gifts, uniforms/apparel, packaging.
 
 Updated mockups supplied 24 November 2026 replace pixelated contact blocks with sample names and contact details; QR codes remain blurred. Horizontal before / bilingual vertical after mapping retained.
+
+24 November: owner supplied four styled Maxline corporate gift images: carry bag, USB drive (explicitly confirmed), desk accessory, mug. Published as project gallery without inferred materials, capacities, charging specifications, quantities or outcomes.
