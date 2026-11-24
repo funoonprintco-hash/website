@@ -43,9 +43,7 @@ export default async function ProductPage({
         <div>
           <h2>Make it yours.</h2>
           <p>
-            Every project starts with your requirements. These are options to
-            discuss; availability and the final specification are confirmed in
-            your quotation.
+            {slug === "business-cards" ? "All our business cards have rounded corners. Choose 400 GSM with matte or glossy lamination, with or without spot UV; or 760 MIC with velvet lamination and spot UV. Orders are available in 500 or 1,000 pieces." : "Every project starts with your requirements. These are options to discuss; availability and the final specification are confirmed in your quotation."}
           </p>
           <dl className="spec-list">
             {s.options.map((o) => (
@@ -108,11 +106,11 @@ export default async function ProductPage({
           {[
             [
               `Can I customise ${s.name.toLowerCase()}?`,
-              "Yes. Share your preferred dimensions, quantities, materials and branding requirements. We’ll confirm feasible options and pricing in your quotation.",
+              slug === "business-cards" ? "Personalise the artwork within our rounded-corner range. Choose 400 GSM with matte or glossy lamination and optional spot UV, or 760 MIC with velvet lamination and spot UV. Ask about gold foil compatibility when requesting your quote." : "Yes. Share your preferred dimensions, quantities, materials and branding requirements. We’ll confirm feasible options and pricing in your quotation.",
             ],
             [
               "Is there a minimum order quantity?",
-              "Minimum quantities depend on the product, material and production method. Include your estimated quantity and we’ll advise on suitable options.",
+              slug === "business-cards" ? "Business cards are available in quantities of 500 or 1,000 pieces." : "Minimum quantities depend on the product, material and production method. Include your estimated quantity and we’ll advise on suitable options.",
             ],
             [
               "How long will my order take?",

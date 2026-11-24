@@ -1,5 +1,5 @@
 // Service catalogue. Images and copy are placeholders that can be replaced
-// without touching component code. `options` values are EXAMPLES only.
+// without touching component code. Business-card options are owner-confirmed; other options are examples.
 
 export type Service = {
   number: string
@@ -21,15 +21,15 @@ export const services: Service[] = [
     name: "Business Cards",
     short: "The first thing you hand over. Made to be remembered.",
     description:
-      "Considered business cards that carry a brand with confidence — from paper weight and finish to the feel of the edge in hand.",
+      "Rounded-corner business cards in 400 GSM or 760 MIC, available in quantities of 500 or 1,000 pieces. Choose the finish that suits your brand.",
     image: "/work/funoon-business-card-hq.webp",
     imageAlt: "Funoon FZC black and white business-card mockup with sample contact details",
     goodFor: ["Corporate teams", "Sales teams", "Networking", "Client meetings", "Events"],
     options: [
-      { label: "Paper", examples: ["Uncoated", "Textured", "Heavy cotton"] },
-      { label: "Finish", examples: ["Matte", "Emboss", "Foil"] },
-      { label: "Size", examples: ["Standard", "Square", "Custom"] },
-      { label: "Quantity", examples: ["100", "250", "500", "1000+"] },
+      { label: "400 GSM", examples: ["Matte or glossy lamination", "With or without spot UV", "Rounded corners only"] },
+      { label: "760 MIC", examples: ["Velvet lamination", "Spot UV included", "Rounded corners only"] },
+      { label: "Gold foil", examples: ["Available — ask us to confirm the suitable card specification"] },
+      { label: "Quantity", examples: ["500 pieces", "1,000 pieces"] },
     ],
   },
   {
