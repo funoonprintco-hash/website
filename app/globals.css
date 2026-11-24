@@ -2096,3 +2096,6 @@ details p {
     gap: 32px;
   }
 }
+
+/* Preserve the complete supplied card artwork in the landing image. */
+.hero-media > img { object-fit:contain; background:#252525; }

@@ -2,7 +2,7 @@ export const coreProducts = [
   {
     slug: "business-cards",
     name: "Business cards",
-    image: "/work/corporate-stationery.png",
+    image: "/work/funoon-business-card-mockup.webp",
     description:
       "Distinctive cards, considered finishes and a confident introduction. Ask about a QR-linked personal contact page.",
   },

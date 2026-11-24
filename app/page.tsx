@@ -56,15 +56,15 @@ export default function HomePage() {
 
           <SurfaceLight className="hero-media">
             <Image
-              src="/work/packaging.png"
-              alt="Temporary packaging concept; Funoon business-card photography will replace this image"
+              src="/work/funoon-business-card-mockup.webp"
+              alt="Funoon FZC black and white business-card mockup with sample contact details"
               fill
               priority
               sizes="(max-width: 700px) 100vw, 55vw"
             />
             <div className="hero-media-caption">
               <span>Form. Material. Detail.</span>
-              <span>Packaging concept</span>
+              <span>Business-card mockup</span>
             </div>
           </SurfaceLight>
         </div>
@@ -113,7 +113,7 @@ export default function HomePage() {
                   fill
                   sizes="(max-width: 700px) 100vw, 33vw"
                 />
-                <span>Product concept</span>
+                <span>{s.slug === "business-cards" ? "Business-card mockup" : "Product concept"}</span>
               </div>
               <div className="solution-title">
                 <h3>{s.name}</h3>
