@@ -2098,9 +2098,14 @@ details p {
 }
 
 /* Preserve the complete supplied card artwork in the landing image. */
-.hero-media > img { object-fit:contain; background:#252525; }
+
 
 .project-gallery-gifts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px; }
 .project-gallery-gifts .product-image { aspect-ratio:1; min-height:0; margin:0; }
 .project-gallery-gifts .image-note { grid-column:1 / -1; }
 @media(max-width:700px) { .project-gallery-gifts { grid-template-columns:1fr; } }
+
+.hero-media { align-self:center; height:auto; min-height:0; background:transparent; border-radius:0; overflow:visible; }
+.hero-photo { position:relative; border-radius:16px; overflow:hidden; }
+.hero-photo img { display:block; width:100%; height:auto; padding:0; }
+.hero-media-caption { position:static; margin-top:16px; padding:0; background:transparent; text-shadow:none; }

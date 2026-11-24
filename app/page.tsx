@@ -54,19 +54,23 @@ export default function HomePage() {
             </div>
           </div>
 
-          <SurfaceLight className="hero-media">
+          <div className="hero-media">
+          <SurfaceLight className="hero-photo">
             <Image
-              src="/work/funoon-business-card-mockup.webp"
+              src="/work/funoon-business-card-hq.webp"
               alt="Funoon FZC black and white business-card mockup with sample contact details"
-              fill
+              width={1672}
+              height={941}
+              unoptimized
               priority
               sizes="(max-width: 700px) 100vw, 55vw"
             />
+            </SurfaceLight>
             <div className="hero-media-caption">
               <span>Form. Material. Detail.</span>
               <span>Business-card mockup</span>
             </div>
-          </SurfaceLight>
+          </div>
         </div>
         <div className="shell hero-bottom">
           <span>PRINT · PACKAGING · MERCHANDISE</span>
@@ -109,6 +113,7 @@ export default function HomePage() {
               <div className="solution-image">
                 <Image
                   src={s.image}
+                  unoptimized={s.slug === "business-cards"}
                   alt={`${s.name} product concept`}
                   fill
                   sizes="(max-width: 700px) 100vw, 33vw"

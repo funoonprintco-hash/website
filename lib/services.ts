@@ -22,7 +22,7 @@ export const services: Service[] = [
     short: "The first thing you hand over. Made to be remembered.",
     description:
       "Considered business cards that carry a brand with confidence — from paper weight and finish to the feel of the edge in hand.",
-    image: "/work/funoon-business-card-mockup.webp",
+    image: "/work/funoon-business-card-hq.webp",
     imageAlt: "Funoon FZC black and white business-card mockup with sample contact details",
     goodFor: ["Corporate teams", "Sales teams", "Networking", "Client meetings", "Events"],
     options: [
