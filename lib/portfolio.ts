@@ -98,6 +98,19 @@ export const workItems: WorkItem[] = [
       {src:"/work/maxline-gifts-mug.webp",alt:"Maxline branded mug — styled product image"},
     ],
   },
+  {
+    slug: "maxline-polo",
+    title: "Branded Polo",
+    category: "Apparel",
+    image: "/work/maxline-polo.webp",
+    imageAlt: "Styled image of a white polo shirt with Maxline branding on the chest",
+    client: "Maxline",
+    deliverables: ["Maxline-branded polo shirt"],
+    description: "A white polo carrying Maxline’s identity on the chest. A simple, consistent presentation for branded corporate apparel.",
+    note: "Styled product image supplied for this project. Fabric, sizing and branding methods are confirmed individually for each new order.",
+    relatedProducts: ["corporate-apparel"],
+    gallery: [{src:"/work/maxline-polo.webp",alt:"White Maxline-branded polo shirt — styled product image"}],
+  },
 ];
 export const workFilters: (WorkCategory | "All")[] = [
   "All",
