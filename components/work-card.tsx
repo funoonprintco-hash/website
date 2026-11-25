@@ -1,3 +1,4 @@
+import { imageSize } from "@/lib/image-size";
 import Link from "next/link";
 import Image from "next/image";
 import type { WorkItem } from "@/lib/portfolio";
@@ -8,7 +9,7 @@ export function WorkCard({ item }: { item: WorkItem }) {
         <Image
           src={item.image}
           alt={item.imageAlt}
-          fill
+          {...imageSize(item.image)}
           sizes="(max-width: 700px) 100vw, 50vw"
           className="object-contain"
         />

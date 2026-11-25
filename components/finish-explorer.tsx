@@ -1,4 +1,6 @@
 "use client";
+import { imageSize } from "@/lib/image-size";
+
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -84,7 +86,7 @@ export function FinishExplorer() {
           <Image
             src="/work/quality-detail.png"
             alt="Illustrative close-up of paper texture"
-            fill
+            {...imageSize("/work/quality-detail.png")}
             sizes="(max-width:700px) 100vw, 45vw"
           />
           <div className="finish-light" aria-hidden="true" />

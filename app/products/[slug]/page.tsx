@@ -1,3 +1,4 @@
+import { CorporateGiftGallery } from "@/components/corporate-gift-gallery";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { services, getService } from "@/lib/services";
@@ -38,6 +39,7 @@ export default async function ProductPage({
           Request a Quote
         </Link>
       </PageIntro>
+      {slug === "corporate-gifts" && <CorporateGiftGallery />}
       <section className="shell section split-editorial">
         <ProductImage src={s.image} alt={s.imageAlt} concept priority />
         <div>
@@ -85,7 +87,7 @@ export default async function ProductPage({
           </div>
         </section>
       )}
-      {examples.length > 0 && (
+      {slug !== "corporate-gifts" && examples.length > 0 && (
         <section className="shell section">
           <div className="section-heading">
             <h2>See it in practice.</h2>

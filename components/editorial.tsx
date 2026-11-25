@@ -1,3 +1,4 @@
+import { imageSize } from "@/lib/image-size";
 import Image from "next/image";
 import Link from "next/link";
 export function PageIntro({
@@ -50,7 +51,7 @@ export function ProductImage({
         src={src}
         unoptimized={src === "/work/funoon-business-card-hq.webp"}
         alt={alt}
-        fill
+        {...imageSize(src)}
         sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 45vw"
         className="object-contain"
         priority={priority}

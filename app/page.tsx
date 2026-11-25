@@ -1,3 +1,4 @@
+import { imageSize } from "@/lib/image-size";
 import Link from "next/link";
 import { FinishExplorer } from "@/components/finish-explorer";
 import { SurfaceLight } from "@/components/surface-light";
@@ -115,7 +116,7 @@ export default function HomePage() {
                   src={s.image}
                   unoptimized={s.slug === "business-cards"}
                   alt={`${s.name} product concept`}
-                  fill
+                  {...imageSize(s.image)}
                   sizes="(max-width: 700px) 100vw, 33vw"
                 />
                 <span>{s.slug === "business-cards" ? "Business-card mockup" : "Product concept"}</span>

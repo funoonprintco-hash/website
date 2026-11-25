@@ -2113,3 +2113,34 @@ details p {
 .card-product-photo { margin:0; min-width:0; align-self:start; background:transparent; }
 .card-product-photo img { display:block; width:100%; height:auto; padding:0; border-radius:16px; }
 .card-product-photo figcaption { margin-top:12px; color:#555; font-size:12px; }
+
+/* Photography uses its own proportions, without presentation frames. */
+.solution-image, .work-image, .product-image, .finish-sample,
+.work-card:nth-child(2) .work-image, .project-gallery .product-image,
+.project-gallery-gifts .product-image,
+.solution-tile-0 .solution-image, .solution-tile-1 .solution-image,
+.solution-tile-5 .solution-image {
+  aspect-ratio:auto; height:auto; min-height:0; background:transparent;
+  border:0; box-shadow:none; border-radius:0; align-self:start;
+}
+.solution-image img, .work-image img, .product-image img,
+.catalogue-grid .product-image img, .finish-sample img {
+  display:block; position:relative; width:100%; height:auto; padding:0;
+  border-radius:16px; object-fit:contain;
+}
+.work-image::after { display:none; }
+.image-label, .solution-image > span, .product-image figcaption {
+  position:static; display:block; padding:0; margin-top:12px;
+  background:transparent; color:#555; font-size:12px;
+}
+.finish-sample img { opacity:1; }
+.finish-sample-label { position:relative; padding:16px 0 0; background:transparent; }
+.comparison-images img { border-radius:16px; }
+@media(hover:hover) {
+  .work-card:hover img, .solution-tile:hover img { transform:none; }
+}
+
+.gift-sample-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:40px 28px; }
+.gift-sample-grid h3 { margin-top:16px; text-transform:capitalize; font-size:1.25rem; }
+@media(max-width:1099px) { .gift-sample-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:700px) { .gift-sample-grid { grid-template-columns:1fr; } }

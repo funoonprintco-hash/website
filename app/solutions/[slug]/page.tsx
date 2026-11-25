@@ -1,3 +1,4 @@
+import { CorporateGiftGallery } from "@/components/corporate-gift-gallery";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getSolution, solutions } from "@/lib/solutions";
@@ -39,6 +40,7 @@ export default async function SolutionPage({
           Discuss Your Requirements
         </Link>
       </PageIntro>
+      {slug === "corporate-gifts" && <CorporateGiftGallery />}
       <section className="shell section split-editorial">
         <ProductImage
           src={s.image}
