@@ -2109,3 +2109,7 @@ details p {
 .hero-photo { position:relative; border-radius:16px; overflow:hidden; }
 .hero-photo img { display:block; width:100%; height:auto; padding:0; }
 .hero-media-caption { position:static; margin-top:16px; padding:0; background:transparent; text-shadow:none; }
+
+.card-product-photo { margin:0; min-width:0; align-self:start; background:transparent; }
+.card-product-photo img { display:block; width:100%; height:auto; padding:0; border-radius:16px; }
+.card-product-photo figcaption { margin-top:12px; color:#555; font-size:12px; }

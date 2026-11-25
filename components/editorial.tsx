@@ -36,6 +36,14 @@ export function ProductImage({
   priority?: boolean;
   className?: string;
 }) {
+  if (src === "/work/funoon-business-card-hq.webp") {
+    return (
+      <figure className={`card-product-photo ${className}`}>
+        <Image src={src} alt={alt} width={1672} height={941} unoptimized priority={priority} sizes="(max-width: 700px) 100vw, 50vw" />
+        {concept && <figcaption>Business-card mockup</figcaption>}
+      </figure>
+    );
+  }
   return (
     <figure className={`product-image ${className}`}>
       <Image
