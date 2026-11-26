@@ -2099,48 +2099,549 @@ details p {
 
 /* Preserve the complete supplied card artwork in the landing image. */
 
+.project-gallery-gifts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+.project-gallery-gifts .product-image {
+  aspect-ratio: 1;
+  min-height: 0;
+  margin: 0;
+}
+.project-gallery-gifts .image-note {
+  grid-column: 1 / -1;
+}
+@media (max-width: 700px) {
+  .project-gallery-gifts {
+    grid-template-columns: 1fr;
+  }
+}
 
-.project-gallery-gifts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px; }
-.project-gallery-gifts .product-image { aspect-ratio:1; min-height:0; margin:0; }
-.project-gallery-gifts .image-note { grid-column:1 / -1; }
-@media(max-width:700px) { .project-gallery-gifts { grid-template-columns:1fr; } }
+.hero-media {
+  align-self: center;
+  height: auto;
+  min-height: 0;
+  background: transparent;
+  border-radius: 0;
+  overflow: visible;
+}
+.hero-photo {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.hero-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 0;
+}
+.hero-media-caption {
+  position: static;
+  margin-top: 16px;
+  padding: 0;
+  background: transparent;
+  text-shadow: none;
+}
 
-.hero-media { align-self:center; height:auto; min-height:0; background:transparent; border-radius:0; overflow:visible; }
-.hero-photo { position:relative; border-radius:16px; overflow:hidden; }
-.hero-photo img { display:block; width:100%; height:auto; padding:0; }
-.hero-media-caption { position:static; margin-top:16px; padding:0; background:transparent; text-shadow:none; }
-
-.card-product-photo { margin:0; min-width:0; align-self:start; background:transparent; }
-.card-product-photo img { display:block; width:100%; height:auto; padding:0; border-radius:16px; }
-.card-product-photo figcaption { margin-top:12px; color:#555; font-size:12px; }
+.card-product-photo {
+  margin: 0;
+  min-width: 0;
+  align-self: start;
+  background: transparent;
+}
+.card-product-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  border-radius: 16px;
+}
+.card-product-photo figcaption {
+  margin-top: 12px;
+  color: #555;
+  font-size: 12px;
+}
 
 /* Photography uses its own proportions, without presentation frames. */
-.solution-image, .work-image, .product-image, .finish-sample,
-.work-card:nth-child(2) .work-image, .project-gallery .product-image,
+.solution-image,
+.work-image,
+.product-image,
+.finish-sample,
+.work-card:nth-child(2) .work-image,
+.project-gallery .product-image,
 .project-gallery-gifts .product-image,
-.solution-tile-0 .solution-image, .solution-tile-1 .solution-image,
+.solution-tile-0 .solution-image,
+.solution-tile-1 .solution-image,
 .solution-tile-5 .solution-image {
-  aspect-ratio:auto; height:auto; min-height:0; background:transparent;
-  border:0; box-shadow:none; border-radius:0; align-self:start;
+  aspect-ratio: auto;
+  height: auto;
+  min-height: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+  align-self: start;
 }
-.solution-image img, .work-image img, .product-image img,
-.catalogue-grid .product-image img, .finish-sample img {
-  display:block; position:relative; width:100%; height:auto; padding:0;
-  border-radius:16px; object-fit:contain;
+.solution-image img,
+.work-image img,
+.product-image img,
+.catalogue-grid .product-image img,
+.finish-sample img {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  border-radius: 16px;
+  object-fit: contain;
 }
-.work-image::after { display:none; }
-.image-label, .solution-image > span, .product-image figcaption {
-  position:static; display:block; padding:0; margin-top:12px;
-  background:transparent; color:#555; font-size:12px;
+.work-image::after {
+  display: none;
 }
-.finish-sample img { opacity:1; }
-.finish-sample-label { position:relative; padding:16px 0 0; background:transparent; }
-.comparison-images img { border-radius:16px; }
-@media(hover:hover) {
-  .work-card:hover img, .solution-tile:hover img { transform:none; }
+.image-label,
+.solution-image > span,
+.product-image figcaption {
+  position: static;
+  display: block;
+  padding: 0;
+  margin-top: 12px;
+  background: transparent;
+  color: #555;
+  font-size: 12px;
+}
+.finish-sample img {
+  opacity: 1;
+}
+.finish-sample-label {
+  position: relative;
+  padding: 16px 0 0;
+  background: transparent;
+}
+.comparison-images img {
+  border-radius: 16px;
+}
+@media (hover: hover) {
+  .work-card:hover img,
+  .solution-tile:hover img {
+    transform: none;
+  }
 }
 
-.gift-sample-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:40px 28px; }
-.gift-sample-grid h3 { margin-top:16px; text-transform:capitalize; font-size:1.25rem; }
-@media(max-width:1099px) { .gift-sample-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-@media(max-width:700px) { .gift-sample-grid { grid-template-columns:1fr; } }
+.gift-sample-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px 28px;
+}
+.gift-sample-grid h3 {
+  margin-top: 16px;
+  text-transform: capitalize;
+  font-size: 1.25rem;
+}
+@media (max-width: 1099px) {
+  .gift-sample-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 700px) {
+  .gift-sample-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Guided e-card demo */
+.ecard-page {
+  padding-block: 72px 100px;
+}
+.ecard-page-heading {
+  max-width: 820px;
+  margin-bottom: 64px;
+}
+.ecard-page-heading h1 {
+  font-size: clamp(2.6rem, 5vw, 4.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+.ecard-page-heading p {
+  margin-top: 24px;
+  color: #555;
+  font-size: 1.2rem;
+}
+.ecard-form {
+  max-width: 800px;
+  margin-inline: auto;
+}
+.ecard-progress {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 40px;
+}
+.ecard-progress progress {
+  flex: 1;
+  height: 4px;
+  accent-color: #111;
+}
+.ecard-question {
+  min-height: 280px;
+  animation: ecard-step 350ms ease-out;
+}
+.ecard-question h2 {
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  margin-bottom: 16px;
+}
+.ecard-question h2:focus,
+.ecard-result h2:focus {
+  outline: none;
+}
+.ecard-question > p {
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 28px;
+}
+.ecard-question input:not([type="checkbox"]):not([type="color"]),
+.ecard-question textarea {
+  width: 100%;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  padding: 18px;
+  background: #fff;
+  color: #111;
+  font: inherit;
+  font-size: 1.2rem;
+}
+.ecard-question textarea {
+  resize: vertical;
+}
+.ecard-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+  margin-block: 24px;
+}
+.ecard-controls .button {
+  margin-left: auto;
+}
+.ecard-small {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #666;
+}
+.ecard-error {
+  color: #a01818 !important;
+  min-height: 24px;
+  margin-top: 12px;
+}
+.ecard-colours {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+.ecard-swatches {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-block: 12px 24px;
+}
+.ecard-swatches button {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  color: white;
+  font-size: 22px;
+  box-shadow: 0 0 0 1px #aaa;
+}
+.ecard-swatches button[aria-pressed="true"] {
+  outline: 2px solid #111;
+  outline-offset: 4px;
+}
+.ecard-colours input {
+  width: 60px;
+  height: 44px;
+}
+.ecard-designs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.ecard-designs button {
+  text-align: left;
+  padding: 16px;
+  border: 1px solid #aaa;
+  border-radius: 12px;
+  background: #fff;
+}
+.ecard-designs button[aria-pressed="true"] {
+  outline: 2px solid #111;
+  outline-offset: 2px;
+}
+.ecard-designs strong {
+  display: block;
+  text-transform: capitalize;
+  margin-block: 16px 8px;
+}
+.ecard-designs button > span:last-child {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+}
+.ecard-design-mini {
+  display: flex;
+  flex-direction: column;
+  height: 110px;
+  padding: 14px;
+  border: 1px solid #ddd;
+  gap: 8px;
+}
+.ecard-design-mini > span {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--card-color);
+}
+.ecard-design-mini i {
+  width: 70%;
+  height: 5px;
+  background: #888;
+}
+.ecard-design-mini i:last-child {
+  width: 45%;
+}
+.mini-bold {
+  border-top: 32px solid var(--card-color);
+}
+.mini-bold > span {
+  display: none;
+}
+.mini-classic {
+  align-items: center;
+  border-top: 4px solid var(--card-color);
+}
+.ecard-review {
+  margin-bottom: 32px;
+}
+.ecard-review > div {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  gap: 16px;
+  padding-block: 16px;
+  border-bottom: 1px solid #ddd;
+}
+.ecard-review dt {
+  text-transform: capitalize;
+  color: #555;
+}
+.ecard-review dd {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+.ecard-consent {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  line-height: 1.7;
+  font-size: 14px;
+}
+.ecard-consent input {
+  width: 22px;
+  height: 22px;
+  margin-top: 3px;
+  flex-shrink: 0;
+  accent-color: #111;
+}
+.ecard-disclosure a {
+  text-decoration: underline;
+}
+.ecard-trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.ecard-result {
+  display: grid;
+  grid-template-columns: 1fr 440px;
+  gap: 80px;
+  align-items: start;
+}
+.ecard-result-copy p {
+  margin-block: 24px;
+  line-height: 1.7;
+  max-width: 55ch;
+}
+.ecard-result-copy .text-link {
+  display: block;
+  width: fit-content;
+  margin-block: 24px;
+}
+.ecard-preview {
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  color: #111;
+  width: 100%;
+}
+.ecard-identity {
+  padding: 36px;
+  border-top: 8px solid var(--card-color);
+}
+.ecard-identity h2 {
+  font-size: 2rem;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  margin-block: 20px 8px;
+}
+.ecard-identity p,
+.ecard-identity strong {
+  display: block;
+  overflow-wrap: anywhere;
+  line-height: 1.6;
+}
+.ecard-initials {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--card-color);
+  color: var(--card-contrast);
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+.ecard-content {
+  padding: 0 36px 32px;
+}
+.ecard-bio {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.ecard-contact-links {
+  display: grid;
+}
+.ecard-contact-links a {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  padding-block: 18px;
+  border-bottom: 1px solid #ddd;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.ecard-contact-links a span {
+  overflow-wrap: anywhere;
+  max-width: 100%;
+  font-size: 14px;
+}
+.ecard-address {
+  white-space: pre-wrap;
+  line-height: 1.7;
+  margin-top: 24px;
+}
+.ecard-save {
+  margin-block: 28px 12px;
+  padding: 16px 24px;
+  background: var(--card-color);
+  color: var(--card-contrast);
+  border-radius: 6px;
+  width: 100%;
+  font-weight: 600;
+}
+.ecard-bold .ecard-identity {
+  background: var(--card-color);
+  color: var(--card-contrast);
+  margin-bottom: 28px;
+}
+.ecard-bold .ecard-initials {
+  background: var(--card-contrast);
+  color: var(--card-color);
+}
+.ecard-classic .ecard-identity {
+  text-align: center;
+  border-top-width: 4px;
+}
+.ecard-classic .ecard-initials {
+  margin: auto;
+  border-radius: 8px;
+}
+.ecard-classic .ecard-identity h2 {
+  font-family: Georgia, serif;
+}
+@keyframes ecard-step {
+  from {
+    opacity: 0.5;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ecard-question {
+    animation: none;
+  }
+}
+@media (max-width: 1249px) {
+  .desktop-nav {
+    display: none;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+}
+@media (max-width: 800px) {
+  .ecard-result {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .ecard-preview {
+    max-width: 480px;
+    margin: auto;
+  }
+  .ecard-page {
+    padding-block: 40px 64px;
+  }
+  .ecard-page-heading {
+    margin-bottom: 40px;
+  }
+}
+@media (max-width: 500px) {
+  .ecard-designs {
+    grid-template-columns: 1fr;
+  }
+  .ecard-designs button {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 8px 16px;
+  }
+  .ecard-design-mini {
+    grid-row: span 2;
+  }
+  .ecard-designs strong {
+    margin: 4px 0;
+  }
+  .ecard-review > div {
+    grid-template-columns: 1fr auto;
+  }
+  .ecard-review dt {
+    grid-column: 1 / -1;
+  }
+  .ecard-identity {
+    padding: 28px;
+  }
+  .ecard-content {
+    padding: 0 24px 24px;
+  }
+}

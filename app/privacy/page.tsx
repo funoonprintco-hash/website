@@ -27,6 +27,9 @@ export default function PrivacyPage() {
           attachments are delivered to our team by our email provider, Resend.
           Uploaded files are not published on the website.
         </p>
+        <h2>E-card demos and marketing preferences</h2>
+        <p>When you select “Show my demo”, we receive the contact details, optional profile information, design and colour choices you entered through Resend in our enquiry inbox. We retain the submission to respond about your e-card. The preview is not a public profile. Unsaved entries are held only in the current browser page and are cleared when it is closed or refreshed.</p>
+        <p>Marketing consent is optional and unchecked by default. We record your choice, the wording shown and the submission time. We use these details for marketing by email, phone or WhatsApp only if you opt in. You can withdraw marketing consent or request deletion by contacting us at <a href={site.emailHref}>{site.email}</a>. Declining marketing does not prevent you from seeing your demo.</p>
         <h2>Service providers</h2>
         <p>
           The website is hosted on Vercel. Hosting and email providers process

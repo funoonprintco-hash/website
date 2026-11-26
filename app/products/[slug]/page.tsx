@@ -81,8 +81,8 @@ export default async function ProductPage({
               We scope the page, links and contact fields with you as part of
               the project.
             </p>
-            <Link className="text-link" href="/quote?service=Business%20Cards">
-              Discuss QR-linked business cards
+            <Link className="text-link" href="/ecard-demo">
+              Try your e-card demo
             </Link>
           </div>
         </section>

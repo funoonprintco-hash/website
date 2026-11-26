@@ -26,7 +26,7 @@ export function SiteHeader() {
     };
   }, [open]);
   useEffect(() => {
-    const media = window.matchMedia("(min-width: 1100px)");
+    const media = window.matchMedia("(min-width: 1250px)");
     const close = () => {
       if (media.matches) setOpen(false);
     };
