@@ -1,6 +1,6 @@
-# E-card demo
+# Personal e-card builder
 
-Route: /ecard-demo. Linked in main navigation, footer and business-card product page.
+Route: /ecard-demo/create. The original personal builder is linked from the printed-to-digital demonstration at /ecard-demo. Main navigation, footer and business-card offering links lead to that demonstration; see [PRINT-DIGITAL-DEMO.md](PRINT-DIGITAL-DEMO.md).
 
 One-question steps lead to a review and a private preview. Three styles (minimal, bold, classic), custom brand colour, contact links and a vCard download. No public profile URL is created. Draft values stay only in React memory and clear on reload.
 

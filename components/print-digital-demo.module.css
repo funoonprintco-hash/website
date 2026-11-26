@@ -1,0 +1,81 @@
+.demo { padding-top: 76px; padding-bottom: 64px; }
+.intro { max-width: 850px; }
+.eyebrow, .stageLabel { font-size: 11px; font-weight: 600; letter-spacing: .12em; }
+.eyebrow { margin-bottom: 20px; color: #666; }
+.intro h1 { font-family: var(--font-archivo), sans-serif; font-size: clamp(2.7rem, 5.5vw, 5.5rem); font-weight: 500; line-height: 1.04; letter-spacing: -.04em; margin: 0 0 26px; }
+.description { max-width: 590px; font-size: 18px; line-height: 1.65; color: #555; }
+.support { margin-top: 20px; font-size: 14px; }
+.stage { display: grid; grid-template-columns: minmax(0, 1.2fr) 76px minmax(0, 1fr); align-items: center; gap: 20px; margin: 65px 0 75px; }
+.stageLabel { color: #666; margin-bottom: 23px; font-size: 10px; }
+.printSide { max-width: 550px; }
+.printCard { background: #fafafa; color: #171717; border-radius: 16px; padding: 32px; box-shadow: 0 2px 1px #0002, 0 20px 45px #00000014; transform: rotate(-3deg); transition: transform 250ms ease-out; }
+.printLogo { width: 89px; margin-bottom: 22px; }
+.printName { display: grid; gap: 4px; }
+.printName strong { font-size: clamp(20px, 2.4vw, 29px); font-weight: 650; letter-spacing: -.025em; }
+.printName span { font-size: 12px; line-height: 1.5; }
+.printBottom { display: flex; align-items: end; justify-content: space-between; gap: 12px; margin-top: 20px; }
+.printDetails { display: grid; gap: 6px; font-size: 12px; padding-bottom: 14px; overflow-wrap: anywhere; }
+.qr { background: #fff; border: 0; cursor: pointer; padding: 0 0 7px; color: #111; flex: none; border-radius: 6px; }
+.qr img { width: 112px; height: 112px; display: block; }
+.qr span { display: block; font-size: 10px; }
+.tryRow { display: flex; gap: 24px; align-items: center; margin-top: 44px; }
+.tryRow p { font-size: 12px; line-height: 1.6; color: #666; }
+.tryRow button { gap: 18px; min-height: 52px; }
+.connection { display: flex; align-items: center; color: #999; }
+.connection span { flex: 1; height: 1px; background: #bbb; }
+.mobileArrow { display: none; }
+.phoneSide { width: 100%; max-width: 380px; justify-self: center; }
+.phone { background: #fafafa; border: 7px solid #222; border-radius: 36px; overflow: hidden; width: 100%; height: 650px; box-shadow: 0 24px 48px #00000012; scroll-margin-top: 90px; }
+.phoneTop { background: #fafafa; color: #555; display: flex; justify-content: space-between; padding: 17px 22px 13px; font-size: 9px; letter-spacing: .1em; }
+.waiting { position: relative; height: calc(100% - 43px); background: #171717; color: #fff; padding: 50px 32px 32px; display: flex; flex-direction: column; align-items: start; }
+.mark { width: 65px; height: 44px; fill: currentColor; display: block; }
+.waiting h2 { font-family: var(--font-archivo), sans-serif; font-size: 55px; line-height: 1.05; letter-spacing: -.04em; font-weight: 500; margin: 40px 0 24px; }
+.waiting p { max-width: 220px; color: #bbb; font-size: 14px; line-height: 1.65; margin-bottom: auto; }
+.waiting > svg:last-of-type { margin-top: 26px; }
+.scanLine { position: absolute; inset: 0 0 auto; height: 2px; background: #fff; transform-origin: center; animation: scan 800ms ease-in-out both; }
+@keyframes scan { from { transform: translateY(50px); opacity: 0; } 20%,80% { opacity: 1; } to { transform: translateY(540px); opacity: 0; } }
+.contact { height: calc(100% - 43px); overflow-y: auto; scrollbar-width: thin; scrollbar-color: #888 #fafafa; animation: contactIn 250ms ease-out both; }
+@keyframes contactIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.identity { padding: 22px 23px 15px; }
+.identity .eyebrow { font-size: 9px; margin: 0 0 16px; }
+.identity h2 { font-family: var(--font-archivo), sans-serif; font-size: 53px; font-weight: 650; line-height: .98; letter-spacing: -.04em; margin: 0; }
+.identity h2 span { color: #888; }
+.role { font-size: 12px; line-height: 1.6; margin: 15px 0 20px; }
+.role span { color: #666; }
+.save { display: flex; gap: 13px; align-items: center; padding: 12px 16px; min-height: 55px; background: #171717; color: #fff; border-radius: 6px; font-size: 13px; font-weight: 600; }
+.save small { display: block; font-size: 10px; font-weight: 400; color: #ccc; margin-top: 2px; }
+.actions { margin-top: 12px; }
+.actions a { display: grid; grid-template-columns: 20px minmax(0,1fr) 15px; gap: 10px; align-items: center; padding: 11px 2px; min-height: 54px; border-bottom: 1px solid #ddd; font-size: 12px; font-weight: 600; transition: background 150ms ease; }
+.actions small { display: block; font-size: 10px; font-weight: 400; color: #666; margin-top: 3px; overflow-wrap: anywhere; }
+.signature { background: #171717; color: #fff; padding: 24px; }
+.signature .mark { width: 53px; height: 36px; margin-bottom: 15px; }
+.signature rect { transform-box: fill-box; transform-origin: center; animation: bars 500ms ease-out backwards; }
+@keyframes bars { from { transform: scaleY(.6); opacity: .3; } to { transform: scaleY(1); opacity: 1; } }
+.signature p { font-size: 8px; letter-spacing: .15em; color: #ccc; margin-bottom: 15px; }
+.signature strong { font-size: 20px; font-weight: 500; letter-spacing: .015em; }
+.status { font-size: 11px; color: #666; min-height: 34px; line-height: 1.5; margin-top: 14px; }
+.controls { display: flex; justify-content: space-between; gap: 8px; }
+.controls button, .controls a { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; min-height: 48px; padding: 0 2px; background: none; border: 0; cursor: pointer; }
+.controls button:disabled { opacity: .45; cursor: default; }
+.demo button:disabled { cursor: default; }
+.demo :is(a, button):focus-visible, .conversion a:focus-visible, .personal a:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+.tryRow button:focus-visible, .demo .save:focus-visible { outline-color: #111; }
+.conversion a:focus-visible { outline-color: #fff; }
+.identity h2:focus { outline: none; }
+.benefits { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 50px; border-top: 1px solid #ddd; padding-top: 35px; }
+.benefits h2 { font-size: 19px; font-weight: 500; letter-spacing: -.02em; margin-bottom: 12px; }
+.benefits p { font-size: 14px; line-height: 1.7; color: #666; max-width: 310px; }
+.noApp { color: #666; font-size: 12px; margin-top: 30px; }
+.conversion { background: #171717; color: #fff; padding: 75px 0; }
+.conversion h2 { font-size: clamp(2rem, 4vw, 3.8rem); line-height: 1.12; font-weight: 500; letter-spacing: -.035em; }
+.ctas { display: flex; align-items: center; gap: 32px; margin-top: 32px; flex-wrap: wrap; }
+.ctas a { min-height: 48px; display: inline-flex; align-items: center; gap: 12px; }
+.personal { padding-top: 60px; padding-bottom: 60px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+.personal h2 { font-size: 28px; margin-bottom: 10px; font-weight: 500; }
+.personal p { font-size: 15px; color: #666; }
+.personal a { flex-shrink: 0; gap: 15px; min-height: 48px; }
+@media (hover:hover) and (pointer:fine) { .printCard:hover { transform: rotate(-1deg) translateY(-3px); } .actions a:hover { background: #eee; } .save:hover { background: #333; } }
+@media (max-width: 950px) { .stage { grid-template-columns: minmax(0,1fr) 24px minmax(0,1fr); gap: 16px; } .printCard { padding: 24px; } .tryRow { flex-direction: column; align-items: start; gap: 15px; } .printDetails { font-size: 10px; } .qr img { width: 96px; height: 96px; } }
+@media (max-width: 700px) { .demo { padding-top: 45px; padding-bottom: 40px; } .intro h1 { font-size: clamp(2.55rem, 10vw, 4rem); } .description { font-size: 16px; } .stage { grid-template-columns: minmax(0,1fr); gap: 28px; margin: 48px 0; } .printSide { width: 100%; max-width: 420px; justify-self: center; } .printCard { transform: none; padding: 25px; } .printName strong { font-size: 25px; } .printLogo { width: 75px; margin-bottom: 20px; } .printDetails { font-size: 11px; } .qr img { width: 100px; height: 100px; } .tryRow { margin-top: 25px; flex-direction: row; gap: 17px; align-items: center; } .tryRow button { padding: 14px 16px; gap: 10px; font-size: 12px; } .tryRow p { font-size: 10px; } .connection { height: 38px; flex-direction: column; justify-content: center; } .connection span { width: 1px; height: 18px; flex: none; } .desktopArrow { display: none; } .mobileArrow { display: block; } .phoneSide { max-width: 360px; } .stageLabel { font-size: 9px; } .phone { height: 650px; } .benefits { grid-template-columns: 1fr; gap: 28px; padding-top: 30px; } .benefits p { max-width: 100%; } .conversion { padding: 50px 0; } .ctas { gap: 18px; } .personal { flex-direction: column; align-items: start; padding-top: 40px; padding-bottom: 40px; } }
+@media (max-width: 370px) { .printCard { padding: 19px; } .printDetails { font-size: 9px; } .qr img { width: 90px; height: 90px; } .tryRow { flex-direction: column; align-items: start; gap: 10px; } }
+@media (prefers-reduced-motion: reduce) { .demo *, .demo *::before, .demo *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } .printCard { transform: none; } }

@@ -82,7 +82,7 @@ export default async function ProductPage({
               the project.
             </p>
             <Link className="text-link" href="/ecard-demo">
-              Try your e-card demo
+              Try the interactive e-card experience
             </Link>
           </div>
         </section>

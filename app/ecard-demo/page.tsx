@@ -1,14 +1,12 @@
-import { ECardBuilder } from "@/components/ecard-builder";
+import { PrintDigitalDemo } from "@/components/print-digital-demo";
 import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata(
-  "Try Your Business E-card",
-  "Build a private business e-card demo. Add your details, choose a design and colour, and preview your digital introduction.",
+  "Printed Business Cards Meet Digital E-cards",
+  "Try the connection from a printed business card to an employee e-card. Call, WhatsApp, email and download a contact in one place.",
   "/ecard-demo",
 );
 export default function ECardDemoPage() {
   return (
-    <section className="shell ecard-page">
-      <ECardBuilder />
-    </section>
+    <PrintDigitalDemo />
   );
 }

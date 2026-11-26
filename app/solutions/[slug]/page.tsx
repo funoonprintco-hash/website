@@ -74,6 +74,7 @@ export default async function SolutionPage({
           })}
         </div>
       </section>
+      {slug === "corporate-branding" && <section className="shell section split-editorial"><h2>One card. A simpler connection.</h2><div><p>See how a printed employee business card connects to a digital contact page, with direct links and a downloadable contact.</p><Link className="text-link" href="/ecard-demo">Try the interactive e-card experience</Link></div></section>}
       <Process />
       <ProjectCTA href={`/quote?service=${encodeURIComponent(s.fullName)}`} />
     </>
